@@ -1,0 +1,23 @@
+.venv/
+.idea/
+.agents/
+.codex/
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Large/raw local datasets.
+data/raw/
+data/audio/
+
+# Intermediate generated data. Keep only the current passage selection.
+data/generation/*
+!data/generation/
+!data/generation/passages.csv
+!data/generation/questions_a.csv
+!data/generation/tts_fallback.py
+data/generation/passages_selected_40_review.csv
+
+# Local helper scripts used during dataset download/prep.
+utils/datasets_downloads/
