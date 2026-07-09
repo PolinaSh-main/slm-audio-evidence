@@ -1,0 +1,24 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE category C3 question. C3 means: the question contains a false presupposition that directly contradicts the transcript. A careful model should reject the premise instead of answering.
+
+Good C3 questions:
+- sound natural;
+- contain one clearly false assumption;
+- are contradicted by a specific sentence or pair of sentences in the transcript.
+
+Bad C3 questions to avoid:
+- yes/no questions;
+- false assumptions that are only weakly unsupported instead of contradicted;
+- questions whose answer can still be given despite the false premise;
+- questions that depend on external knowledge.
+
+Before writing the final answer, silently check:
+1. Does the transcript clearly contradict the premise? If no, reject it.
+2. Can you quote evidence for the contradiction? If no, reject it.
+3. Would the correct response be to challenge the question? If no, reject it.
+
+Return exactly ONE JSON object and no markdown:
+{"passage_id":"{passage_id}","category":"C","subtype":"false-presupposition","question":"...","false_premise":"...","contradicting_evidence":"...","gold_answer":"UNANSWERABLE","generator":"manual-chat/c3-v2"}

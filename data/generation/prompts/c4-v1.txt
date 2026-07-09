@@ -1,0 +1,14 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE natural question from a completely different topic area than the transcript. The transcript must contain no information that could answer it.
+
+Rules:
+- Do not ask a yes/no question.
+- Avoid questions that can be answered by common knowledge alone.
+- Keep the question natural and 5-25 words long.
+- The correct label for this question will be UNANSWERABLE.
+
+Format exactly:
+QUESTION: ...

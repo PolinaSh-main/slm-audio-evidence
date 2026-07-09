@@ -1,0 +1,321 @@
+status,reasons,source_file,line,passage_id,category,subtype,question
+kept,,c_v2.jsonl,1,sq-3002,C,absent-entity,Which company designed the halftime stage for the game at Levi's Stadium?
+kept,,c_v2.jsonl,2,sq-3002,C,absent-entity,Who performed the national anthem before the Super Bowl described in the passage?
+kept,,c_v2.jsonl,3,sq-3002,C,absent-entity,What was the final score of the game awarded to Levi's Stadium?
+kept,,c_v2.jsonl,4,sq-0425,C,absent-entity,Which school did Tesla attend after returning from Tomingaj?
+kept,,c_v2.jsonl,5,sq-0425,C,absent-entity,What type of weapon did Tesla carry while dressed in hunter's garb?
+kept,,c_v2.jsonl,6,sq-0425,C,absent-entity,Who helped Tesla find lodging while he was in Tomingaj?
+kept,,c_v2.jsonl,7,sq-0901,C,absent-entity,Which university hosted Ladner when he proved the result about NP-intermediate problems?
+kept,,c_v2.jsonl,8,sq-0901,C,absent-entity,What algorithm is described for solving the graph isomorphism problem efficiently?
+kept,,c_v2.jsonl,9,sq-0901,C,absent-entity,In what journal was Ladner's theorem first published?
+kept,,c_v2.jsonl,10,sq-2571,C,absent-entity,Which castle did Bernard de Neufmarché use as his main residence?
+kept,,c_v2.jsonl,11,sq-2571,C,absent-entity,What treaty ended the Norman interference in Wales described in the passage?
+kept,,c_v2.jsonl,12,sq-2571,C,absent-entity,Who translated the Norman legal records into Welsh during that period?
+kept,,c_v2.jsonl,13,sq-0338,C,absent-entity,What instrument is used to measure the angle of the fault in the field?
+kept,,c_v2.jsonl,14,sq-0338,C,absent-entity,Which geologist first proposed the principle of cross-cutting relationships?
+kept,,c_v2.jsonl,15,sq-0338,C,absent-entity,What mineral composition identifies the key bed in these fault examples?
+kept,,c_v2.jsonl,16,sq-3203,C,absent-entity,Which licensing exam must Canadian teachers pass before entering the classroom?
+kept,,c_v2.jsonl,17,sq-3203,C,absent-entity,What union represents public school teachers in Canada?
+kept,,c_v2.jsonl,18,sq-3203,C,absent-entity,How many hours of classroom practicum are required for the Bachelor of Education?
+kept,,c_v2.jsonl,19,sq-2726,C,absent-entity,Which coastal city records the highest average humidity in Southern California?
+kept,,c_v2.jsonl,20,sq-2726,C,absent-entity,What wildfire warning system is used during Southern California's dry summers?
+kept,,c_v2.jsonl,21,sq-2726,C,absent-entity,When was the region's largest recorded snowstorm?
+kept,,c_v2.jsonl,22,sq-2005,C,absent-entity,Which printer published Luther's 1521 writings on prophecy?
+kept,,c_v2.jsonl,23,sq-2005,C,absent-entity,What city hosted Luther while he developed this interpretation of Daniel?
+kept,,c_v2.jsonl,24,sq-2005,C,absent-entity,What illustration accompanied Luther's explanation of the Little Horn?
+kept,,c_v2.jsonl,25,sq-4747,C,absent-entity,Which engineering firm designed the upper canal near Diepoldsau?
+kept,,c_v2.jsonl,26,sq-4747,C,absent-entity,What machinery was used to dredge sediment from the western Rhine Delta?
+kept,,c_v2.jsonl,27,sq-4747,C,absent-entity,How deep was Lake Tuggenersee before it silted up?
+kept,,c_v2.jsonl,28,sq-0229,C,absent-entity,Which theologian first coined the term prevenient grace?
+kept,,c_v2.jsonl,29,sq-0229,C,absent-entity,What church council formally debated prevenient grace?
+kept,,c_v2.jsonl,30,sq-0229,C,absent-entity,Which hymn describes prevenient grace in its lyrics?
+kept,,c_v2.jsonl,31,sq-3790,C,absent-entity,Which engineer led the original AppleTalk development team at Apple?
+kept,,c_v2.jsonl,32,sq-3790,C,absent-entity,What cable connector was most commonly shipped with AppleTalk starter kits?
+kept,,c_v2.jsonl,33,sq-3790,C,absent-entity,Which conference introduced AppleTalk to third-party software developers?
+kept,,c_v2.jsonl,34,sq-1628,C,absent-entity,Which party held the most seats on the Warsaw City Council after the latest election mentioned?
+kept,,c_v2.jsonl,35,sq-1628,C,absent-entity,Where does the Warsaw City Council hold its regular committee meetings?
+kept,,c_v2.jsonl,36,sq-1628,C,absent-entity,Who chairs the budget committee of the Warsaw City Council?
+kept,,c_v2.jsonl,37,sq-0819,C,absent-entity,Which satellite model did Sky UK use for its first television broadcasts?
+kept,,c_v2.jsonl,38,sq-0819,C,absent-entity,Who founded British Sky Broadcasting before it became Sky UK Limited?
+kept,,c_v2.jsonl,39,sq-0819,C,absent-entity,What was the monthly price of Sky UK's broadband package in 2015?
+kept,,c_v2.jsonl,40,sq-4398,C,absent-entity,Which university opened the first clinical pharmacy training program?
+kept,,c_v2.jsonl,41,sq-4398,C,absent-entity,What certification exam must clinical pharmacists pass before joining patient care rounds?
+kept,,c_v2.jsonl,42,sq-4398,C,absent-entity,Which software system do clinical pharmacists use to track drug product selection?
+kept,,c_v2.jsonl,43,sq-2072,C,absent-entity,Which horse did Temujin ride during the campaign against rival tribes?
+kept,,c_v2.jsonl,44,sq-2072,C,absent-entity,Where was the Yassa code first written down for Temujin's followers?
+kept,,c_v2.jsonl,45,sq-2072,C,absent-entity,Who served as Temujin's chief judge when enforcing the Yassa code?
+kept,,c_v2.jsonl,46,sq-4437,C,absent-entity,Which refinery is planned to process oil from Kenya's Turkana deposits?
+kept,,c_v2.jsonl,47,sq-4437,C,absent-entity,Who negotiated Kenya's first crude export contract after the reserves were discovered?
+kept,,c_v2.jsonl,48,sq-4437,C,absent-entity,What pipeline equipment will be used to transport Turkana oil to the coast?
+kept,,c_v2.jsonl,49,sq-0525,C,absent-entity,Which architect designed Fresno's first city hall after incorporation?
+kept,,c_v2.jsonl,50,sq-0525,C,absent-entity,What crop replaced wheat on Easterby's farm after Fresno Station grew?
+kept,,c_v2.jsonl,51,sq-0525,C,absent-entity,Where was the Fresno Traction Company's main streetcar depot located?
+kept,,c_v2.jsonl,52,sq-5092,C,absent-entity,Which composer wrote the original theme music for Doctor Who?
+kept,,c_v2.jsonl,53,sq-5092,C,absent-entity,What material was used to build the first TARDIS prop exterior?
+kept,,c_v2.jsonl,54,sq-5092,C,absent-entity,Which studio hosted the filming of Doctor Who's first episode?
+kept,,c_v2.jsonl,55,sq-4420,C,absent-entity,Which engineer patented the first lead fusible plug for boilers?
+kept,,c_v2.jsonl,56,sq-4420,C,absent-entity,What tool do operators use to inspect the firebox crown after the plug melts?
+kept,,c_v2.jsonl,57,sq-4420,C,absent-entity,Where are replacement plugs stored on a locomotive boiler?
+kept,,c_v2.jsonl,58,sq-1443,C,absent-entity,Which professional association publishes the sector definitions for construction markets?
+kept,,c_v2.jsonl,59,sq-1443,C,absent-entity,What safety certification is required before workers can enter industrial construction sites?
+kept,,c_v2.jsonl,60,sq-1443,C,absent-entity,"Which software platform is used to classify projects into buildings, infrastructure, and industrial sectors?"
+kept,,c_v2.jsonl,61,sq-4758,C,absent-entity,Which textbook first printed the prime-generating formula based on Wilson's theorem?
+kept,,c_v2.jsonl,62,sq-4758,C,absent-entity,Who calculated the largest prime produced by the formula described in the passage?
+kept,,c_v2.jsonl,63,sq-4758,C,absent-entity,What computer program was used to test the formula for natural numbers?
+kept,,c_v2.jsonl,64,sq-3854,C,absent-entity,Which committee room is equipped for televised witness hearings in the Scottish Parliament?
+kept,,c_v2.jsonl,65,sq-3854,C,absent-entity,Who chairs the finance committee of the Scottish Parliament?
+kept,,c_v2.jsonl,66,sq-3854,C,absent-entity,What software is used to schedule committee meetings on Tuesday mornings?
+kept,,c_v2.jsonl,67,sq-1487,C,absent-entity,Which publisher prints the finished chapters after the authors complete their edits?
+kept,,c_v2.jsonl,68,sq-1487,C,absent-entity,What citation software do contributing authors use when preparing chapter text?
+kept,,c_v2.jsonl,69,sq-1487,C,absent-entity,Where are the final chapter drafts archived after review?
+kept,,c_v2.jsonl,70,sq-2499,C,absent-entity,Which shipping company transported emergency fuel during the embargo?
+kept,,c_v2.jsonl,71,sq-2499,C,absent-entity,What rationing card design was issued to drivers during the energy crisis?
+kept,,c_v2.jsonl,72,sq-2499,C,absent-entity,Which refinery expanded first in response to the embargo's supply pressures?
+kept,,c_v2.jsonl,73,sq-4471,C,absent-entity,Which building hosts the official office of the Governor of Victoria?
+kept,,c_v2.jsonl,74,sq-4471,C,absent-entity,What voting system is used to elect Victoria's municipal councils?
+kept,,c_v2.jsonl,75,sq-4471,C,absent-entity,Who served as Victoria's opposition leader during Daniel Andrews's premiership?
+kept,,c_v2.jsonl,76,sq-0005,C,absent-entity,Which university trained the geographic scholars who promoted these climatic zone theories?
+kept,,c_v2.jsonl,77,sq-0005,C,absent-entity,What map was used to divide the world into the climatic zones described by colonizing empires?
+kept,,c_v2.jsonl,78,sq-0005,C,absent-entity,Who published the first critique of these colonial climate theories?
+kept,,c_v2.jsonl,79,sq-3555,C,absent-entity,Which laboratory first measured the bond length of dioxygen?
+kept,,c_v2.jsonl,80,sq-3555,C,absent-entity,What spectrometer was used to determine the bond energy of O2?
+kept,,c_v2.jsonl,81,sq-3555,C,absent-entity,Which scientist named the common allotrope of elemental oxygen dioxygen?
+kept,,c_v2.jsonl,82,sq-0176,C,absent-entity,Which architect designed Newcastle's 13th-century defensive wall?
+kept,,c_v2.jsonl,83,sq-0176,C,absent-entity,What weapon was used in the first Scottish assault that Newcastle resisted in the 14th century?
+kept,,c_v2.jsonl,84,sq-0176,C,absent-entity,Where was William the Lion held inside Newcastle after his imprisonment in 1174?
+kept,,c_v2.jsonl,85,sq-3032,C,absent-entity,Which accreditation agency evaluates religiously affiliated private schools?
+kept,,c_v2.jsonl,86,sq-3032,C,absent-entity,What tuition scholarship program supports students attending parochial schools?
+kept,,c_v2.jsonl,87,sq-3032,C,absent-entity,Where are denominational school teachers required to complete faith-based training?
+kept,,c_v2.jsonl,88,sq-0774,C,absent-entity,Which port handled most British settler arrivals along the eastern coast?
+kept,,c_v2.jsonl,89,sq-0774,C,absent-entity,What treaty set the western boundaries of the older colonies' land claims?
+kept,,c_v2.jsonl,90,sq-0774,C,absent-entity,Who managed the Hudson's Bay Company's fur trade with local tribes in Rupert's Land?
+kept,,c_v2.jsonl,91,sq-3647,C,absent-entity,Which organ was first identified as the site where memory cells mature?
+kept,,c_v2.jsonl,92,sq-3647,C,absent-entity,What laboratory technique is used to count antigen-specific memory cells after infection?
+kept,,c_v2.jsonl,93,sq-3647,C,absent-entity,Who discovered the mechanism of antigen presentation in early vertebrates?
+kept,,c_v2.jsonl,94,sq-3390,C,absent-entity,Which neighborhood contains Jacksonville's oldest Filipino community center?
+kept,,c_v2.jsonl,95,sq-3390,C,absent-entity,Who was Jacksonville's mayor when the 2010 Census population was recorded?
+kept,,c_v2.jsonl,96,sq-3390,C,absent-entity,What annual festival celebrates Jacksonville's Arab population?
+kept,,c_v2.jsonl,97,sq-1122,C,absent-entity,Which court building houses hearings on disputes over European Union directives?
+kept,,c_v2.jsonl,98,sq-1122,C,absent-entity,Who drafted the first regulation adopted under the Treaties establishing the European Union?
+kept,,c_v2.jsonl,99,sq-1122,C,absent-entity,What database tracks amendments to secondary European Union law?
+kept,,c_v2.jsonl,100,sq-1158,C,absent-entity,Which microscope was used to identify the apicoplast in Plasmodium?
+kept,,c_v2.jsonl,101,sq-1158,C,absent-entity,Who first classified Cryptosporidium as an apicomplexan without a chloroplast?
+kept,,c_v2.jsonl,102,sq-1158,C,absent-entity,Where are apicomplexan starch granules purified for biochemical study?
+kept,,c_v2.jsonl,103,sq-0714,C,absent-entity,Which textbook illustration first labeled the forces as action and reaction?
+kept,,c_v2.jsonl,104,sq-0714,C,absent-entity,Who demonstrated Newton's Third Law using a classroom spring scale experiment?
+kept,,c_v2.jsonl,105,sq-0714,C,absent-entity,What experiment measured the simultaneous timing of action and reaction forces?
+kept,,c_v2.jsonl,106,sq-3234,C,absent-entity,Which palace building housed the Office of Western Medicine founded in 1263?
+kept,,c_v2.jsonl,107,sq-3234,C,absent-entity,What surgical instrument did huihui doctors use when treating members of the Yuan court?
+kept,,c_v2.jsonl,108,sq-3234,C,absent-entity,Who translated Avicenna's medical terminology for Nestorian physicians in China?
+kept,,c_v2.jsonl,109,sq-4265,C,absent-entity,Which monastery copied the first plague tract blamed on bad air?
+kept,,c_v2.jsonl,110,sq-4265,C,absent-entity,What herbal remedy did the Paris medical faculty recommend to plague sufferers?
+kept,,c_v2.jsonl,111,sq-4265,C,absent-entity,Who delivered the medical faculty's report to the king of France?
+kept,,c_v2.jsonl,112,sq-3739,C,absent-entity,Which church in North America hosted the largest Huguenot congregation?
+kept,,c_v2.jsonl,113,sq-3739,C,absent-entity,What apprenticeship tool was commonly used by Huguenot artisans in the Federal period?
+kept,,c_v2.jsonl,114,sq-3739,C,absent-entity,Who financed E.I. du Pont's Eleutherian gunpowder mills?
+kept,,c_v2.jsonl,115,sq-3541,C,absent-entity,Which research vessel collected the ctenophore specimens used to study statocysts?
+kept,,c_v2.jsonl,116,sq-3541,C,absent-entity,Who first named the ctenophore's aboral organ in anatomical studies?
+kept,,c_v2.jsonl,117,sq-3541,C,absent-entity,Where is the statolith stored before it is supported by the balancers?
+kept,,c_v2.jsonl,118,sq-5207,C,absent-entity,Which contractor manufactured the oxygen tank that exploded on Apollo 13?
+kept,,c_v2.jsonl,119,sq-5207,C,absent-entity,What camera model was used to photograph the Apollo 1 prelaunch test?
+kept,,c_v2.jsonl,120,sq-5207,C,absent-entity,Where were the cancelled Apollo lunar missions planned to land?
+kept,,c_v2.jsonl,121,sq-3002,C,missing-attribute,What color were the seats in Levi's Stadium when it opened?
+kept,,c_v2.jsonl,122,sq-3002,C,missing-attribute,What exact time did the NFL owners vote at their spring meetings in Boston?
+kept,,c_v2.jsonl,123,sq-3002,C,missing-attribute,Who owned Levi's Stadium when the game was awarded to it?
+kept,,c_v2.jsonl,124,sq-0425,C,missing-attribute,What color was Tesla's hunter's garb in Tomingaj?
+rejected,c_keyword_overlap_no_new_focus:read|tesla|tomingaj|while,c_v2.jsonl,125,sq-0425,C,missing-attribute,How many books did Tesla read while in Tomingaj?
+kept,,c_v2.jsonl,126,sq-0425,C,missing-attribute,What was the exact location detail of the place in the mountains that Tesla explored?
+kept,,c_v2.jsonl,127,sq-0901,C,missing-attribute,What method did Ladner use to show that NP-intermediate problems exist if P != NP?
+kept,,c_v2.jsonl,128,sq-0901,C,missing-attribute,What is the age of the graph isomorphism problem?
+kept,,c_v2.jsonl,129,sq-0901,C,missing-attribute,What is the name of an unstated subpart of the integer factorization problem discussed in the transcript?
+rejected,c_keyword_overlap_no_new_focus:conquest|period,c_v2.jsonl,130,sq-2571,C,missing-attribute,What was Bernard de Neufmarché's age during the period after the Conquest?
+kept,,c_v2.jsonl,131,sq-2571,C,missing-attribute,What material were the Marches' fortifications made from under Norman dominance?
+kept,,c_v2.jsonl,132,sq-2571,C,missing-attribute,What exact location detail in Cheshire was associated with Hugh Lupus?
+kept,,c_v2.jsonl,133,sq-0338,C,missing-attribute,What color is the key bed in these situations?
+kept,,c_v2.jsonl,134,sq-0338,C,missing-attribute,What is the size of a fault that penetrates some formations but not those on top of it?
+kept,,c_v2.jsonl,135,sq-0338,C,missing-attribute,What method is used to find the key bed?
+kept,,c_v2.jsonl,136,sq-3203,C,missing-attribute,What is the exact time when teachers in Canada begin teaching at a public school?
+kept,,c_v2.jsonl,137,sq-3203,C,missing-attribute,What is the size of a public school funded by the provincial government?
+kept,,c_v2.jsonl,138,sq-3203,C,missing-attribute,What method do businesses and sponsors use to fund a private school?
+kept,,c_v2.jsonl,139,sq-2726,C,missing-attribute,What exact time of year does serious rain occur in Southern California?
+kept,,c_v2.jsonl,140,sq-2726,C,missing-attribute,What color is the snow that occurs in the Southeast of the state?
+kept,,c_v2.jsonl,141,sq-2726,C,missing-attribute,What is the exact location detail of the sunny days in Southern California?
+kept,,c_v2.jsonl,142,sq-2005,C,missing-attribute,What method did Luther use to broaden the foundations of the Reformation in 1521?
+kept,,c_v2.jsonl,143,sq-2005,C,missing-attribute,"What was the appearance of the Little Horn in Daniel 8:9-12, 23-25?"
+kept,,c_v2.jsonl,144,sq-2005,C,missing-attribute,What was the exact location detail of the divisions of Rome where the Little Horn came up?
+kept,,c_v2.jsonl,145,sq-4747,C,missing-attribute,What was the price of the upper canal near Diepoldsau?
+kept,,c_v2.jsonl,146,sq-4747,C,missing-attribute,What is the exact location detail of the lower canal at Fußach?
+kept,,c_v2.jsonl,147,sq-4747,C,missing-attribute,What quantity of sediment is continuously input into the lake?
+kept,,c_v2.jsonl,148,sq-0229,C,missing-attribute,What color is prevenient grace described as having?
+kept,,c_v2.jsonl,149,sq-0229,C,missing-attribute,What exact time is prevenient grace given to all people?
+kept,,c_v2.jsonl,150,sq-0229,C,missing-attribute,What method do those tainted by sin use to make a truly free choice?
+kept,,c_v2.jsonl,151,sq-3790,C,missing-attribute,What was the price of AppleTalk when it was developed in 1985?
+kept,,c_v2.jsonl,152,sq-3790,C,missing-attribute,What method did AppleTalk use to automatically assign addresses?
+kept,,c_v2.jsonl,153,sq-3790,C,missing-attribute,What was the exact location detail where Apple Inc. developed AppleTalk?
+kept,,c_v2.jsonl,154,sq-1628,C,missing-attribute,What is the exact time when Warsaw City Council members are elected?
+kept,,c_v2.jsonl,155,sq-1628,C,missing-attribute,What is the name of an unstated subpart of the Warsaw City Council?
+kept,,c_v2.jsonl,156,sq-1628,C,missing-attribute,What method does the mayor use to sign bills into law?
+kept,,c_v2.jsonl,157,sq-0819,C,missing-attribute,What is the exact location detail of Sky UK Limited's corporate headquarters in Isleworth?
+kept,,c_v2.jsonl,158,sq-0819,C,missing-attribute,What was the price of Sky's broadband internet services for consumers in the United Kingdom?
+kept,,c_v2.jsonl,159,sq-0819,C,missing-attribute,What is the appearance of Sky UK Limited's fixed line telephone services?
+kept,,c_v2.jsonl,160,sq-4398,C,missing-attribute,What exact time did the clinical pharmacy movement initially begin inside hospitals and clinics?
+kept,,c_v2.jsonl,161,sq-4398,C,missing-attribute,What method do clinical pharmacists use to collaborate with physicians?
+kept,,c_v2.jsonl,162,sq-4398,C,missing-attribute,What quantity of patient care rounds do clinical pharmacists often participate in?
+kept,,c_v2.jsonl,163,sq-2072,C,missing-attribute,What was the material of the Yassa code?
+kept,,c_v2.jsonl,164,sq-2072,C,missing-attribute,What was the age of TemГјjin's mother when she adopted orphans from the conquered tribe?
+kept,,c_v2.jsonl,165,sq-2072,C,missing-attribute,What quantity of enemy soldiers did TemГјjin avoid driving away after defeating rival tribes?
+kept,,c_v2.jsonl,166,sq-4437,C,missing-attribute,What is the exact location detail of Kenya's proven oil deposits in Turkana?
+kept,,c_v2.jsonl,167,sq-4437,C,missing-attribute,What method does Tullow Oil use to estimate Kenya's oil reserves?
+kept,,c_v2.jsonl,168,sq-4437,C,missing-attribute,What price does Kenya pay for its crude petroleum requirements?
+kept,,c_v2.jsonl,169,sq-0525,C,missing-attribute,What material was the Central Pacific Railroad station near Easterby's made of?
+kept,,c_v2.jsonl,170,sq-0525,C,missing-attribute,Who owned the store around the station that grew the town of Fresno Station?
+kept,,c_v2.jsonl,171,sq-0525,C,missing-attribute,What was the exact time in 1885 when Fresno became an incorporated city?
+kept,,c_v2.jsonl,172,sq-5092,C,missing-attribute,What is the size of the Doctor's TARDIS?
+kept,,c_v2.jsonl,173,sq-5092,C,missing-attribute,What is the name of an unstated subpart of the TARDIS?
+kept,,c_v2.jsonl,174,sq-5092,C,missing-attribute,What method does the Doctor use to save civilisations?
+kept,,c_v2.jsonl,175,sq-4420,C,missing-attribute,What is the size of the boiler's firebox crown?
+kept,,c_v2.jsonl,176,sq-4420,C,missing-attribute,What exact time does the lead melt after the water level drops?
+kept,,c_v2.jsonl,177,sq-4420,C,missing-attribute,What quantity of operators are warned when the steam escapes?
+kept,,c_v2.jsonl,178,sq-1443,C,missing-attribute,What is the price of building construction in the residential sector?
+kept,,c_v2.jsonl,179,sq-1443,C,missing-attribute,What material are the dams included in infrastructure made of?
+kept,,c_v2.jsonl,180,sq-1443,C,missing-attribute,What exact location detail is given for manufacturing plants in the industrial sector?
+kept,,c_v2.jsonl,181,sq-4758,C,missing-attribute,What method is used to compute A?
+kept,,c_v2.jsonl,182,sq-4758,C,missing-attribute,What is the exact time when Wilson's theorem generates the number 2?
+kept,,c_v2.jsonl,183,sq-4758,C,missing-attribute,What is the name of an unstated subpart of Bertrand's postulate?
+kept,,c_v2.jsonl,184,sq-3854,C,missing-attribute,What is the size of a committee in the Scottish Parliament?
+kept,,c_v2.jsonl,185,sq-3854,C,missing-attribute,What exact location detail is given for committee meetings held throughout Scotland?
+kept,,c_v2.jsonl,186,sq-3854,C,missing-attribute,What method do committees use to take evidence from witnesses?
+kept,,c_v2.jsonl,187,sq-1487,C,missing-attribute,What is the age of the coordinating lead authors?
+kept,,c_v2.jsonl,188,sq-1487,C,missing-attribute,"What exact time do contributing authors prepare text, graphs or data?"
+kept,,c_v2.jsonl,189,sq-1487,C,missing-attribute,What material are the graphs prepared by contributing authors made from?
+kept,,c_v2.jsonl,190,sq-2499,C,missing-attribute,What was the exact time when the embargo caused immediate demands to address threats to U.S. energy security?
+kept,,c_v2.jsonl,191,sq-2499,C,missing-attribute,What method did oil companies use to search for new ways to increase oil supplies?
+kept,,c_v2.jsonl,192,sq-2499,C,missing-attribute,What quantity of oil supplies did companies seek to increase in rugged terrain such as the Arctic?
+kept,,c_v2.jsonl,193,sq-4471,C,missing-attribute,What is the exact location detail of Victoria's 37 seats in the Australian House of Representatives?
+rejected,c_keyword_overlap_no_new_focus:current|premier,c_v2.jsonl,194,sq-4471,C,missing-attribute,What is the age of Daniel Andrews as the current Premier?
+kept,,c_v2.jsonl,195,sq-4471,C,missing-attribute,What method is used to administer Victoria's unincorporated areas directly by the state?
+kept,,c_v2.jsonl,196,sq-0005,C,missing-attribute,What exact time did geographic scholars split the world into climatic zones?
+kept,,c_v2.jsonl,197,sq-0005,C,missing-attribute,What color was the Mid-Atlantic temperate climate described as having?
+kept,,c_v2.jsonl,198,sq-0005,C,missing-attribute,What method did the European empire use to provide guidance and intervention?
+kept,,c_v2.jsonl,199,sq-3555,C,missing-attribute,What is the exact location detail of dioxygen in the Earth's atmosphere?
+kept,,c_v2.jsonl,200,sq-3555,C,missing-attribute,What is the appearance of O2 during cellular respiration?
+kept,,c_v2.jsonl,201,sq-3555,C,missing-attribute,What method is used to measure O2's bond length?
+kept,,c_v2.jsonl,202,sq-0176,C,missing-attribute,What material was Newcastle's new charter granted by Elizabeth in 1589 made of?
+kept,,c_v2.jsonl,203,sq-0176,C,missing-attribute,What was the exact location detail of William the Lion's imprisonment in Newcastle?
+kept,,c_v2.jsonl,204,sq-0176,C,missing-attribute,Who owned the Stone of Scone when Edward I brought it south through the town?
+kept,,c_v2.jsonl,205,sq-3032,C,missing-attribute,What is the size of the K-12 private education sector mentioned in the transcript?
+kept,,c_v2.jsonl,206,sq-3032,C,missing-attribute,What method do some religiously affiliated schools use to impress beliefs and traditions in students?
+kept,,c_v2.jsonl,207,sq-3032,C,missing-attribute,What is the name of an unstated subpart of parochial schools?
+kept,,c_v2.jsonl,208,sq-0774,C,missing-attribute,What was the exact location detail of the British settlers along the eastern coast?
+kept,,c_v2.jsonl,209,sq-0774,C,missing-attribute,What price did the Hudson's Bay Company pay for furs from local tribes?
+kept,,c_v2.jsonl,210,sq-0774,C,missing-attribute,What was the appearance of the provincial charters granted to the older colonies?
+kept,,c_v2.jsonl,211,sq-3647,C,missing-attribute,What is the exact time when the adaptive immune system evolved in early vertebrates?
+kept,,c_v2.jsonl,212,sq-3647,C,missing-attribute,What is the appearance of memory cells used to quickly eliminate a repeated pathogen?
+kept,,c_v2.jsonl,213,sq-3647,C,missing-attribute,What method is used to maintain the ability to mount tailored responses in the body?
+kept,,c_v2.jsonl,214,sq-3390,C,missing-attribute,What is the exact location detail of Jacksonville's Arab population within the city?
+kept,,c_v2.jsonl,215,sq-3390,C,missing-attribute,What was the age of the people counted in Jacksonville as of 2010?
+kept,,c_v2.jsonl,216,sq-3390,C,missing-attribute,What quantity of Jacksonville's Filipino community has ties to the United States Navy?
+kept,,c_v2.jsonl,217,sq-1122,C,missing-attribute,What material are the Treaties establishing the European Union made of?
+kept,,c_v2.jsonl,218,sq-1122,C,missing-attribute,What method does the European Parliament use to establish secondary law?
+kept,,c_v2.jsonl,219,sq-1122,C,missing-attribute,What is the name of an unstated subpart of supplementary law?
+kept,,c_v2.jsonl,220,sq-1158,C,missing-attribute,What color are the amylopectin starch granules located in apicomplexans' cytoplasm?
+kept,,c_v2.jsonl,221,sq-1158,C,missing-attribute,What is the size of the apicoplast inherited by many apicomplexans?
+kept,,c_v2.jsonl,222,sq-1158,C,missing-attribute,What method did Cryptosporidium use to lose the chloroplast completely?
+kept,,c_v2.jsonl,223,sq-0714,C,missing-attribute,What is the exact time when Newton's Third Law resulted from applying symmetry?
+kept,,c_v2.jsonl,224,sq-0714,C,missing-attribute,What is the size of the first body that exerts force F on a second body?
+kept,,c_v2.jsonl,225,sq-0714,C,missing-attribute,What is the appearance of the reaction force called −F?
+kept,,c_v2.jsonl,226,sq-3234,C,missing-attribute,What was the exact location detail of the Office of Western Medicine founded in 1263?
+kept,,c_v2.jsonl,227,sq-3234,C,missing-attribute,What quantity of huihui doctors staffed the two imperial hospitals?
+kept,,c_v2.jsonl,228,sq-3234,C,missing-attribute,What was the appearance of Avicenna's The Canon of Medicine available to the Chinese?
+kept,,c_v2.jsonl,229,sq-4265,C,missing-attribute,What was the exact time when the medical faculty in Paris gave its report to the king of France?
+kept,,c_v2.jsonl,230,sq-4265,C,missing-attribute,What color was the bad air in the most widely accepted theory?
+kept,,c_v2.jsonl,231,sq-4265,C,missing-attribute,What method did plague tracts use to give advice to sufferers?
+kept,,c_v2.jsonl,232,sq-3739,C,missing-attribute,What was the exact location detail of the Huguenot congregations in North America?
+kept,,c_v2.jsonl,233,sq-3739,C,missing-attribute,What quantity of descendants continued to use French first names and surnames?
+kept,,c_v2.jsonl,234,sq-3739,C,missing-attribute,What material were the Eleutherian gunpowder mills made of?
+kept,,c_v2.jsonl,235,sq-3541,C,missing-attribute,What color was the aboral organ of the ctenophore?
+kept,,c_v2.jsonl,236,sq-3541,C,missing-attribute,What is the size of the statolith in the statocyst?
+kept,,c_v2.jsonl,237,sq-3541,C,missing-attribute,What method does a ctenophore use to determine its response based on its mood?
+kept,,c_v2.jsonl,238,sq-5207,C,missing-attribute,What was the exact time of the Apollo 1 cabin fire during the prelaunch test?
+kept,,c_v2.jsonl,239,sq-5207,C,missing-attribute,What was the price of the remaining flight hardware after the first landing?
+kept,,c_v2.jsonl,240,sq-5207,C,missing-attribute,What method did the crew use to return to Earth safely besides using the Lunar Module as a lifeboat?
+kept,,c_v2.jsonl,241,sq-3002,C,false-presupposition,Why was the Super Bowl awarded to the stadium before NFL owners voted on it in Boston?
+kept,,c_v2.jsonl,242,sq-0425,C,false-presupposition,What did Tesla do after willingly joining the Austro-Hungarian Army in Smiljan?
+kept,,c_v2.jsonl,243,sq-0901,C,false-presupposition,Which examples are given of NP-intermediate problems that are already known to be NP-complete?
+kept,,c_v2.jsonl,244,sq-2571,C,false-presupposition,Which Welsh barons took complete dominance of the Marches after the Conquest?
+kept,,c_v2.jsonl,245,sq-0338,C,false-presupposition,How can geologists use a fault that is older than the rocks it cuts to date the surrounding formations?
+kept,,c_v2.jsonl,246,sq-3203,C,false-presupposition,What private-sector funding supports public schools where Canadian teachers can choose to work?
+kept,,c_v2.jsonl,247,sq-2726,C,false-presupposition,Where does snow commonly occur in the southwest of Southern California?
+kept,,c_v2.jsonl,248,sq-2005,C,false-presupposition,Which prophecy did Luther ignore in 1521 when he avoided broadening the Reformation's foundations?
+kept,,c_v2.jsonl,249,sq-4747,C,false-presupposition,Why was the Dornbirner Ach kept separate from the canalized Rhine instead of being diverted to flow parallel to it?
+kept,,c_v2.jsonl,250,sq-0229,C,false-presupposition,How does prevenient grace prevent people tainted by sin from freely accepting or rejecting salvation?
+kept,,c_v2.jsonl,251,sq-3790,C,false-presupposition,What centralized router or server was required for AppleTalk to establish local area networks?
+kept,,c_v2.jsonl,252,sq-1628,C,false-presupposition,How are members divided between the two chambers of Warsaw's bicameral City Council?
+kept,,c_v2.jsonl,253,sq-0819,C,false-presupposition,When did Sky overtake Freeview to become the UK's most popular digital TV service?
+kept,,c_v2.jsonl,254,sq-4398,C,false-presupposition,Where did the clinical pharmacy movement initially begin outside hospitals and clinics?
+kept,,c_v2.jsonl,255,sq-2072,C,false-presupposition,Why did Temüjin drive away enemy soldiers and refuse to integrate conquered tribes?
+kept,,c_v2.jsonl,256,sq-3647,C,false-presupposition,How does the adaptive immune system quickly eliminate repeat infections without using memory cells?
+kept,,c_v2.jsonl,257,sq-3390,C,false-presupposition,Which Florida city is more populous than Jacksonville according to the passage?
+kept,,c_v2.jsonl,258,sq-1122,C,false-presupposition,What primary law does the European Union legislature establish under the Treaties?
+kept,,c_v2.jsonl,259,sq-1158,C,false-presupposition,Which photosynthetic apicomplexans store their energy in chloroplasts instead of cytoplasmic amylopectin starch granules?
+kept,,c_v2.jsonl,260,sq-0714,C,false-presupposition,How does Newton's Third Law describe a force that acts on only one body?
+kept,,c_v2.jsonl,261,sq-4437,C,false-presupposition,How much crude petroleum does Kenya produce domestically to meet its current requirements?
+kept,,c_v2.jsonl,262,sq-0525,C,false-presupposition,Why did Millerton residents avoid moving to Fresno Station despite the railroad's convenience?
+kept,,c_v2.jsonl,263,sq-5092,C,false-presupposition,What ordinary vehicle does the Doctor use instead of the TARDIS to explore the universe?
+kept,,c_v2.jsonl,264,sq-4420,C,false-presupposition,How do lead fusible plugs significantly lower steam pressure when they depressurize the boiler?
+kept,,c_v2.jsonl,265,sq-1443,C,false-presupposition,Which two sectors make up construction when infrastructure is excluded from the industry?
+kept,,c_v2.jsonl,266,sq-4758,C,false-presupposition,How can A or μ be computed without knowing infinitely many primes first?
+kept,,c_v2.jsonl,267,sq-3854,C,false-presupposition,Why is the role of committees weaker in the Scottish Parliament than in other parliamentary systems?
+kept,,c_v2.jsonl,268,sq-1487,C,false-presupposition,"Who writes chapter sections after the lead authors only prepare text, graphs, or data for inclusion?"
+kept,,c_v2.jsonl,269,sq-2499,C,false-presupposition,How did the embargo improve the US economy while eliminating energy security concerns?
+kept,,c_v2.jsonl,270,sq-4471,C,false-presupposition,How many seats does Victoria have in the Australian Senate compared with its 12 seats in the House of Representatives?
+kept,,c_v2.jsonl,271,sq-0005,C,false-presupposition,How did these geographic scholars praise tropical climates for producing hard-working and moral people?
+kept,,c_v2.jsonl,272,sq-3555,C,false-presupposition,"Which rare allotrope of oxygen, rather than dioxygen, is the major part of Earth's atmosphere?"
+kept,,c_v2.jsonl,273,sq-0176,C,false-presupposition,Who created Newcastle as a county corporate after it failed to defend itself against the Scots in the 14th century?
+kept,,c_v2.jsonl,274,sq-3032,C,false-presupposition,Which public schools form the category that includes parochial schools and other denominational schools?
+kept,,c_v2.jsonl,275,sq-0774,C,false-presupposition,How did French settlers come to outnumber British settlers by 20 to 1 along the eastern coast?
+kept,,c_v2.jsonl,276,sq-3234,C,false-presupposition,Why did Chinese physicians support Western medicine's humoral system over yin-yang and wuxing philosophy?
+kept,,c_v2.jsonl,277,sq-4265,C,false-presupposition,What theory replaced bad air as the most widely accepted explanation of plague at the time?
+kept,,c_v2.jsonl,278,sq-3739,C,false-presupposition,How did Huguenots remain isolated by refusing to marry outside their immediate French communities?
+kept,,c_v2.jsonl,279,sq-3541,C,false-presupposition,What movable cilia form the transparent dome that protects the statocyst?
+kept,,c_v2.jsonl,280,sq-5207,C,false-presupposition,How did the Apollo 13 crew complete a successful lunar landing after the oxygen tank explosion?
+kept,,c_v2.jsonl,281,sq-3002,C,off-topic,What ingredients are traditionally used to make a classic Thai green curry paste?
+kept,,c_v2.jsonl,282,sq-0425,C,off-topic,Which spacecraft instruments measured the composition of Saturn's rings during the Cassini mission?
+kept,,c_v2.jsonl,283,sq-0901,C,off-topic,What pigments did Renaissance painters commonly mix to create ultramarine blue?
+kept,,c_v2.jsonl,284,sq-2571,C,off-topic,How does the fermentation process affect the flavor profile of kimchi?
+kept,,c_v2.jsonl,285,sq-0338,C,off-topic,What training regimen is recommended for preparing for an Olympic sprint cycling event?
+kept,,c_v2.jsonl,286,sq-3203,C,off-topic,What camera settings are typically used to photograph the Milky Way in a dark-sky location?
+kept,,c_v2.jsonl,287,sq-2726,C,off-topic,How is sourdough starter maintained before baking a loaf of bread?
+kept,,c_v2.jsonl,288,sq-2005,C,off-topic,Which muscles are primarily targeted during a Romanian deadlift?
+kept,,c_v2.jsonl,289,sq-4747,C,off-topic,What materials are commonly used to insulate a lithium-ion battery pack in an electric scooter?
+kept,,c_v2.jsonl,290,sq-0229,C,off-topic,How do costume designers choose fabrics for a Broadway dance production?
+kept,,c_v2.jsonl,291,sq-3790,C,off-topic,What stitch pattern is best for reinforcing the heel of a hand-knitted wool sock?
+kept,,c_v2.jsonl,292,sq-1628,C,off-topic,How should a violinist adjust bow pressure to produce a clear spiccato passage?
+kept,,c_v2.jsonl,293,sq-0819,C,off-topic,What soil mixture is recommended for growing bonsai juniper trees indoors?
+kept,,c_v2.jsonl,294,sq-4398,C,off-topic,How are brushless motors tuned for stable flight in a racing quadcopter?
+kept,,c_v2.jsonl,295,sq-2072,C,off-topic,Which glazing technique helps prevent cracking in hand-thrown ceramic bowls?
+kept,,c_v2.jsonl,296,sq-4437,C,off-topic,What pruning schedule helps maintain grapevines for high-quality wine production?
+kept,,c_v2.jsonl,297,sq-0525,C,off-topic,How do marine biologists track the migration patterns of humpback whales?
+kept,,c_v2.jsonl,298,sq-5092,C,off-topic,Which seasoning blend is used to cure salmon for traditional gravlax?
+kept,,c_v2.jsonl,299,sq-4420,C,off-topic,What lens focal length is preferred for photographing indoor basketball games from the baseline?
+kept,,c_v2.jsonl,300,sq-1443,C,off-topic,How is a screenplay formatted when introducing a character for the first time?
+kept,,c_v2.jsonl,301,sq-4758,C,off-topic,What brining method is recommended for preparing a smoked turkey breast?
+kept,,c_v2.jsonl,302,sq-3854,C,off-topic,How should a ceramic artist adjust kiln temperature for a cone 6 glaze firing?
+kept,,c_v2.jsonl,303,sq-1487,C,off-topic,Which exercises help improve footwork for competitive fencing bouts?
+kept,,c_v2.jsonl,304,sq-2499,C,off-topic,What irrigation schedule is suitable for growing orchids in a humid greenhouse?
+kept,,c_v2.jsonl,305,sq-4471,C,off-topic,How do audio engineers reduce sibilance when mixing a lead vocal track?
+kept,,c_v2.jsonl,306,sq-0005,C,off-topic,What tuning adjustments are used to reduce oversteer in a rear-wheel-drive race car?
+kept,,c_v2.jsonl,307,sq-3555,C,off-topic,How should watercolor paper be stretched before starting a large landscape painting?
+kept,,c_v2.jsonl,308,sq-0176,C,off-topic,Which database indexing strategy improves full-text search performance in a news archive?
+kept,,c_v2.jsonl,309,sq-3032,C,off-topic,What maintenance routine keeps a grand piano stable in a concert hall?
+kept,,c_v2.jsonl,310,sq-0774,C,off-topic,How is a sour mash prepared during bourbon whiskey production?
+kept,,c_v2.jsonl,311,sq-3647,C,off-topic,What brush technique creates smooth gradients in traditional ink wash painting?
+kept,,c_v2.jsonl,312,sq-3390,C,off-topic,How should espresso grind size be adjusted for a faster extraction time?
+kept,,c_v2.jsonl,313,sq-1122,C,off-topic,Which microphone placement is used to capture a balanced sound from a string quartet?
+kept,,c_v2.jsonl,314,sq-1158,C,off-topic,What route-planning factors matter most for a multi-day backpacking trip in desert terrain?
+kept,,c_v2.jsonl,315,sq-0714,C,off-topic,How is buttercream stabilized for decorating a tiered wedding cake in warm weather?
+kept,,c_v2.jsonl,316,sq-3234,C,off-topic,What lure color is most effective for catching bass in muddy freshwater lakes?
+kept,,c_v2.jsonl,317,sq-4265,C,off-topic,How should a front derailleur be adjusted to prevent chain rubbing on a road bicycle?
+kept,,c_v2.jsonl,318,sq-3739,C,off-topic,Which lighting setup is best for filming a product review in a small studio?
+kept,,c_v2.jsonl,319,sq-3541,C,off-topic,What kneading technique develops gluten for a chewy hand-pulled noodle dough?
+kept,,c_v2.jsonl,320,sq-5207,C,off-topic,How is a queen bee introduced safely into an established hive?

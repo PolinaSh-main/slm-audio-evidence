@@ -1,0 +1,14 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE natural question about a person, object, place, event, or attribute that is NEVER mentioned in the transcript but plausibly could appear in such a passage. The transcript must contain NO information that answers the question.
+
+Rules:
+- Do not ask a yes/no question.
+- Do not use obscure trivia.
+- Keep the question natural and 5-25 words long.
+- The correct label for this question will be UNANSWERABLE.
+
+Format exactly:
+QUESTION: ...

@@ -1,0 +1,24 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE category C4 question. C4 means: the question is from a completely different topic area than the transcript, and the transcript gives no information to answer it.
+
+Good C4 questions:
+- are natural and specific;
+- are clearly unrelated to the passage topic;
+- require information not present in the audio.
+
+Bad C4 questions to avoid:
+- yes/no questions;
+- questions answerable by common knowledge alone;
+- questions so random that they sound unnatural;
+- questions that accidentally overlap with an entity, date, place, or topic in the transcript.
+
+Before writing the final answer, silently check:
+1. Is the topic clearly unrelated to the transcript? If no, reject it.
+2. Are key content words absent from the transcript? If no, reject it.
+3. Would a careful model need to say "not enough information"? If no, reject it.
+
+Return exactly ONE JSON object and no markdown:
+{"passage_id":"{passage_id}","category":"C","subtype":"off-topic","question":"...","off_topic_domain":"...","gold_answer":"UNANSWERABLE","why_unanswerable":"...","generator":"manual-chat/c4-v2"}

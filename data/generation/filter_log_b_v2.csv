@@ -1,0 +1,121 @@
+status,reasons,source_file,line,passage_id,category,subtype,question
+kept,,b_v2.jsonl,1,sq-3002,B,inference,How many years passed between the previous San Francisco Bay Area Super Bowl mentioned and this game being awarded to Levi's Stadium?
+rejected,yes_no_question,b_v2.jsonl,2,sq-3002,B,inference,Did Levi's Stadium open before or after NFL owners awarded it the Super Bowl?
+kept,,b_v2.jsonl,3,sq-3002,B,inference,How long had it been since California last hosted a Super Bowl when the game was awarded in 2013?
+kept,,b_v2.jsonl,4,sq-0425,B,inference,Why did Tesla run away to Tomingaj?
+kept,,b_v2.jsonl,5,sq-0425,B,inference,What two activities in Tomingaj did Tesla later associate with becoming healthier or recovering?
+kept,,b_v2.jsonl,6,sq-0425,B,inference,What happened first: Tesla's earlier illness or his reading of Mark Twain's works in Tomingaj?
+kept,,b_v2.jsonl,7,sq-0901,B,inference,"Under Ladner's result, what two classifications would some NP problems avoid if P is not equal to NP?"
+kept,,b_v2.jsonl,8,sq-0901,B,inference,"Why are graph isomorphism, discrete logarithm, and integer factorization presented as candidates for the same category?"
+kept,,b_v2.jsonl,9,sq-0901,B,inference,"Compared with all NP problems, how common are NP problems not known to be in P or NP-complete?"
+kept,,b_v2.jsonl,10,sq-2571,B,inference,What came after the Marches fell under Norman baronial dominance?
+kept,,b_v2.jsonl,11,sq-2571,B,inference,Why did Norman words begin entering Welsh at that time?
+kept,,b_v2.jsonl,12,sq-2571,B,inference,Which three named barons are examples of William's trusted Normans who dominated the Marches?
+kept,,b_v2.jsonl,13,sq-0338,B,inference,"If a fault cuts through one rock layer, which is older: the fault or that rock layer?"
+rejected,too_long:26,b_v2.jsonl,14,sq-0338,B,inference,"If a fault penetrates lower formations but not the formations above them, what can be inferred about the relative ages of the cut and uncut formations?"
+kept,,b_v2.jsonl,15,sq-0338,B,inference,Why might geologists look for the key bed when studying a faulted sequence?
+kept,,b_v2.jsonl,16,sq-3203,B,inference,What is the difference between the lowest and highest teacher salaries stated for Canada?
+kept,,b_v2.jsonl,17,sq-3203,B,inference,"In most provinces, how many Bachelor's degrees would someone need to become a qualified teacher?"
+kept,,b_v2.jsonl,18,sq-3203,B,inference,How does the funding source differ between public and private school teaching options?
+kept,,b_v2.jsonl,19,sq-2726,B,inference,"Which season has the higher stated temperature range in Southern California, summer or winter?"
+kept,,b_v2.jsonl,20,sq-2726,B,inference,What weather pattern makes Southern California's climate Mediterranean according to the passage?
+kept,,b_v2.jsonl,21,sq-2726,B,inference,Where is snow less expected in the state region described: the Southwest or the Southeast?
+kept,,b_v2.jsonl,22,sq-2005,B,inference,Which two biblical passages were connected to the Papacy in Luther's prophetic interpretation?
+kept,,b_v2.jsonl,23,sq-2005,B,inference,What did Luther do with prophecy as part of broadening the Reformation's foundations?
+kept,,b_v2.jsonl,24,sq-2005,B,inference,How were the Little Horn of Daniel 8 and the Little Horn of Daniel 7 related in Luther's treatment?
+kept,,b_v2.jsonl,25,sq-4747,B,inference,Why was regulation of the Rhine called for?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,26,sq-4747,B,inference,"Which water body is described as carrying the lighter suspended load, the Dornbirner Ach or the Rhine?"
+kept,,b_v2.jsonl,27,sq-4747,B,inference,Why is the lake expected to silt up?
+kept,,b_v2.jsonl,28,sq-0229,B,inference,Why can people tainted by sin still make a free choice about salvation?
+kept,,b_v2.jsonl,29,sq-0229,B,inference,What two movements does prevenient grace produce in relation to sin and God?
+kept,,b_v2.jsonl,30,sq-0229,B,inference,What does God want people to recognize through the work of prevenient grace?
+kept,,b_v2.jsonl,31,sq-3790,B,inference,How long after AppleTalk was developed did the 1990s begin?
+kept,,b_v2.jsonl,32,sq-3790,B,inference,Why could AppleTalk networks be set up without a centralized router or server?
+kept,,b_v2.jsonl,33,sq-3790,B,inference,What made AppleTalk fit the description of a plug-n-play system?
+kept,,b_v2.jsonl,34,sq-1628,B,inference,How many council votes are needed to override a mayoral veto if all 60 Warsaw City Council members vote?
+kept,,b_v2.jsonl,35,sq-1628,B,inference,What happens to a bill after the City Council passes it by a simple majority?
+kept,,b_v2.jsonl,36,sq-1628,B,inference,Which requires a larger share of the Council: passing a bill initially or overriding a veto?
+kept,,b_v2.jsonl,37,sq-0819,B,inference,What happened before Freeview overtook Sky as the UK's most popular digital TV service?
+kept,,b_v2.jsonl,38,sq-0819,B,inference,What types of customers and services does Sky serve in the United Kingdom?
+kept,,b_v2.jsonl,39,sq-0819,B,inference,"After April 2007, which digital TV service was more popular in the UK: Sky or Freeview?"
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,40,sq-4398,B,inference,Where did the clinical pharmacy movement begin before expanding to all health care settings?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,41,sq-4398,B,inference,Why do clinical pharmacists collaborate with physicians and other healthcare professionals?
+kept,,b_v2.jsonl,42,sq-4398,B,inference,How do pharmacists' patient care services support health beyond simply dispensing medicine?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,43,sq-2072,B,inference,Why did Temüjin promise civilians and soldiers wealth from possible future war spoils?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,44,sq-2072,B,inference,How did Temüjin treat defeated enemy soldiers differently from driving them away?
+kept,,b_v2.jsonl,45,sq-2072,B,inference,Why did Temüjin become stronger with each victory?
+kept,,b_v2.jsonl,46,sq-4437,B,inference,How does Kenya's current crude petroleum supply situation compare with its oil reserves in Turkana?
+kept,,b_v2.jsonl,47,sq-4437,B,inference,What is the range in percentage points for petroleum's share of Kenya's national import bill?
+kept,,b_v2.jsonl,48,sq-4437,B,inference,Why is exploration still continuing in Kenya's oil sector?
+kept,,b_v2.jsonl,49,sq-0525,B,inference,Why did many Millerton residents move to the new community around Fresno Station?
+kept,,b_v2.jsonl,50,sq-0525,B,inference,How many years passed between Fresno becoming an incorporated city and the Fresno Traction Company operating 47 streetcars?
+kept,,b_v2.jsonl,51,sq-0525,B,inference,What developed first near Easterby's: the railroad station or the town later called Fresno?
+kept,,b_v2.jsonl,52,sq-5092,B,inference,What makes the Doctor able to have adventures across both space and time?
+kept,,b_v2.jsonl,53,sq-5092,B,inference,"When the series first aired, why would the TARDIS exterior have looked familiar in Britain?"
+kept,,b_v2.jsonl,54,sq-5092,B,inference,What does the Doctor do while accompanied by companions?
+kept,,b_v2.jsonl,55,sq-4420,B,inference,Why does steam escape from a lead fusible plug when the boiler water level drops?
+rejected,yes_no_question,b_v2.jsonl,56,sq-4420,B,inference,Would escaping steam from the plugs be more useful for warning operators or for significantly lowering boiler pressure?
+kept,,b_v2.jsonl,57,sq-4420,B,inference,Why are the plugs not made larger to reduce steam pressure more effectively?
+kept,,b_v2.jsonl,58,sq-1443,B,inference,How is building construction subdivided within the broader construction sector list?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,59,sq-1443,B,inference,Which construction sector includes dams and bridges rather than refineries and power generation?
+kept,,b_v2.jsonl,60,sq-1443,B,inference,What are two alternate labels for infrastructure construction mentioned in the passage?
+kept,,b_v2.jsonl,61,sq-4758,B,inference,"What outside result supports the latter prime-generating formula, and what does it guarantee?"
+kept,,b_v2.jsonl,62,sq-4758,B,inference,How does the Wilson's theorem formula differ from formulas requiring A or μ?
+kept,,b_v2.jsonl,63,sq-4758,B,inference,Why would computing A or μ not be a practical starting point for generating primes from scratch?
+kept,,b_v2.jsonl,64,sq-3854,B,inference,Why is the role of committees stronger in the Scottish Parliament than in other parliamentary systems?
+kept,,b_v2.jsonl,65,sq-3854,B,inference,What kinds of work do Scottish Parliament committees do when scrutinising public business?
+rejected,yes_no_question,b_v2.jsonl,66,sq-3854,B,inference,"Are committee meetings limited to the Parliament building, or can they happen elsewhere?"
+kept,,b_v2.jsonl,67,sq-1487,B,inference,Which author role has the broader coordination duty: lead authors or coordinating lead authors?
+kept,,b_v2.jsonl,68,sq-1487,B,inference,What is the usual range for the total number of coordinating lead authors and lead authors in a chapter?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,69,sq-1487,B,inference,How do contributing authors' materials reach the chapter text?
+kept,,b_v2.jsonl,70,sq-2499,B,inference,Why did oil companies begin searching for new ways to increase oil supplies?
+rejected,yes_no_question,b_v2.jsonl,71,sq-2499,B,inference,Would new oil fields usually contribute significant production immediately or only after several years?
+kept,,b_v2.jsonl,72,sq-2499,B,inference,What kinds of economic effects did the embargo have domestically and internationally?
+kept,,b_v2.jsonl,73,sq-4471,B,inference,How many total federal parliamentary seats does Victoria have across the House of Representatives and the Senate?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,74,sq-4471,B,inference,Which chamber of Victoria's state Parliament is the upper house?
+kept,,b_v2.jsonl,75,sq-4471,B,inference,How many municipal districts in Victoria are not cities?
+kept,,b_v2.jsonl,76,sq-0005,B,inference,How did the scholars' view of people from temperate climates differ from their view of people from tropical climates?
+kept,,b_v2.jsonl,77,sq-0005,B,inference,Why did colonizing scholars think people in tropical climates needed European intervention?
+kept,,b_v2.jsonl,78,sq-0005,B,inference,What common basis connects climatic-zone theories and orientalism in the passage?
+kept,,b_v2.jsonl,79,sq-3555,B,inference,Why does O2 react exothermically with organic molecules according to the passage?
+kept,,b_v2.jsonl,80,sq-3555,B,inference,What role does dioxygen play for both Earth's atmosphere and complex life?
+kept,,b_v2.jsonl,81,sq-3555,B,inference,"Compared with other double bonds or pairs of single bonds in the biosphere, how does O2's bond energy differ?"
+kept,,b_v2.jsonl,82,sq-0176,B,inference,How many years passed between William the Lion being imprisoned in Newcastle and Elizabeth granting the city a new charter?
+kept,,b_v2.jsonl,83,sq-0176,B,inference,Why was a stone wall built around Newcastle in the 13th century?
+kept,,b_v2.jsonl,84,sq-0176,B,inference,What happened later: Newcastle's successful defenses against the Scots in the 14th century or its creation as a county corporate?
+kept,,b_v2.jsonl,85,sq-3032,B,inference,How do the two described types of religiously affiliated schools differ in how they treat religion and academics?
+kept,,b_v2.jsonl,86,sq-3032,B,inference,What kinds of schools are included under religiously affiliated private education in the passage?
+kept,,b_v2.jsonl,87,sq-3032,B,inference,What makes denominational schools a subcategory of private schools rather than a separate public sector in this passage?
+kept,,b_v2.jsonl,88,sq-0774,B,inference,How did the British settler population compare with the French settler population?
+kept,,b_v2.jsonl,89,sq-0774,B,inference,Why did many older colonies have land claims extending far to the west?
+kept,,b_v2.jsonl,90,sq-0774,B,inference,What contrast does the passage draw between the coastal population centers and the direction of settlement growth?
+kept,,b_v2.jsonl,91,sq-3647,B,inference,Why can the adaptive immune system respond more quickly when the same pathogen infects the body again?
+kept,,b_v2.jsonl,92,sq-3647,B,inference,What two features make the adaptive immune response suited to particular pathogens?
+kept,,b_v2.jsonl,93,sq-3647,B,inference,What must happen before the adaptive immune response can generate a pathogen-specific response?
+kept,,b_v2.jsonl,94,sq-3390,B,inference,How many more people were in Jacksonville's Filipino American community in 2010 than in its Arab population in 2000?
+kept,,b_v2.jsonl,95,sq-3390,B,inference,Which Jacksonville group was larger in the figures given: the Arab population or the Filipino American community?
+kept,,b_v2.jsonl,96,sq-3390,B,inference,What connection does the passage make between Jacksonville's Filipino community and the United States Navy?
+kept,,b_v2.jsonl,97,sq-1122,B,inference,How are secondary sources of European Union law connected to the Treaties?
+kept,,b_v2.jsonl,98,sq-1122,B,inference,How does primary law differ from secondary law in the examples given?
+rejected,b_answer_directly_in_transcript,b_v2.jsonl,99,sq-1122,B,inference,Which EU institutions principally make up the legislature that can establish secondary law?
+kept,,b_v2.jsonl,100,sq-1158,B,inference,How do many apicomplexans differ from Cryptosporidium in relation to chloroplasts?
+kept,,b_v2.jsonl,101,sq-1158,B,inference,Why was the earlier idea that apicomplexans were related to helicosproidia rejected?
+kept,,b_v2.jsonl,102,sq-1158,B,inference,How can apicomplexans be nonphotosynthetic yet still have traits linked to photosynthetic ancestry?
+kept,,b_v2.jsonl,103,sq-0714,B,inference,Why does Newton's Third Law rule out a force acting on only one body?
+kept,,b_v2.jsonl,104,sq-0714,B,inference,How do the action force and reaction force compare in magnitude and direction?
+kept,,b_v2.jsonl,105,sq-0714,B,inference,When does the reaction occur relative to the action in Newton's Third Law?
+kept,,b_v2.jsonl,106,sq-3234,B,inference,How was Western medicine connected to both Nestorian Christians and huihui doctors at the Yuan court?
+kept,,b_v2.jsonl,107,sq-3234,B,inference,Why did Chinese physicians oppose Western medicine?
+kept,,b_v2.jsonl,108,sq-3234,B,inference,During whose reign was the Office of Western Medicine founded?
+kept,,b_v2.jsonl,109,sq-4265,B,inference,Why did bad air become a widely accepted explanation for the plague?
+kept,,b_v2.jsonl,110,sq-4265,B,inference,What happened before the plague gained the name that became the medical term?
+kept,,b_v2.jsonl,111,sq-4265,B,inference,How did the Paris report both explain the disease and influence sufferers?
+kept,,b_v2.jsonl,112,sq-3739,B,inference,Why did many Huguenots in North America become assimilated?
+kept,,b_v2.jsonl,113,sq-3739,B,inference,How did Huguenot religious affiliation in North America tend to change over time?
+kept,,b_v2.jsonl,114,sq-3739,B,inference,What evidence does the passage give that French identity persisted even after assimilation?
+kept,,b_v2.jsonl,115,sq-3541,B,inference,How does the statocyst function as a balance sensor?
+kept,,b_v2.jsonl,116,sq-3541,B,inference,Why might a ctenophore spin its mouth toward captured prey?
+kept,,b_v2.jsonl,117,sq-3541,B,inference,How does a ctenophore's balance response differ from simply keeping the statolith equally supported?
+kept,,b_v2.jsonl,118,sq-5207,B,inference,"After budget cuts canceled three planned follow-on landings, how many of the originally possible nine follow-on landings remained?"
+kept,,b_v2.jsonl,119,sq-5207,B,inference,"Among the remaining six missions, how did Apollo 13 differ from the five successful landing missions?"
+kept,,b_v2.jsonl,120,sq-5207,B,inference,Why did the Apollo 13 crew use the Lunar Module as a lifeboat?

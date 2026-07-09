@@ -1,0 +1,16 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Pick an entity that IS mentioned in the transcript. Ask about one attribute of that entity that the transcript does NOT give, such as color, size, age, price, exact reason, exact time, material, location detail, or appearance.
+
+Rules:
+- Do not ask a yes/no question.
+- The entity must appear in the transcript.
+- The requested attribute must not be stated or inferable from the transcript.
+- Keep the question natural and 5-25 words long.
+- The correct label for this question will be UNANSWERABLE.
+
+Format exactly:
+QUESTION: ...
+ENTITY: ...

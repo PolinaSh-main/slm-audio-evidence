@@ -1,0 +1,16 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE natural question with a false presupposition: the question should assume something that the transcript contradicts. A careful model should reject the premise instead of answering normally.
+
+Rules:
+- Do not ask a yes/no question.
+- The false assumption must clearly conflict with the transcript.
+- Keep the question natural and 5-25 words long.
+- The correct label for this question will be UNANSWERABLE.
+
+Format exactly:
+QUESTION: ...
+FALSE_PREMISE: ...
+CONTRADICTING_EVIDENCE: ...

@@ -1,0 +1,25 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE category C1 question. C1 means: the question asks about a person, object, place, event, or attribute that is NEVER mentioned in the transcript. The transcript must contain no information that answers it.
+
+Good C1 questions:
+- sound natural for the general topic of the passage;
+- ask for a specific missing detail;
+- cannot be answered by the transcript or by simple inference from it.
+
+Bad C1 questions to avoid:
+- yes/no questions;
+- questions where the key entity appears in the transcript;
+- questions answerable by common knowledge alone;
+- vague questions such as "why is this important?";
+- questions about opinions, feelings, or speculation unless the transcript clearly gives none of that information.
+
+Before writing the final answer, silently check:
+1. Are the main content words absent from the transcript? If no, reject it.
+2. Could the answer be inferred from the transcript? If yes, reject it.
+3. Would a careful model need to say "not enough information"? If no, reject it.
+
+Return exactly ONE JSON object and no markdown:
+{"passage_id":"{passage_id}","category":"C","subtype":"absent-entity","question":"...","missing_focus":"person|object|place|event|attribute","gold_answer":"UNANSWERABLE","why_unanswerable":"...","generator":"manual-chat/c1-v2"}

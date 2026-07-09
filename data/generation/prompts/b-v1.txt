@@ -1,0 +1,16 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE question whose answer is NOT stated word-for-word but CAN be logically inferred from the transcript. The inference may use negation, comparison, simple arithmetic, cause/effect, chronology, or combining two stated facts.
+
+Rules:
+- Do not ask a yes/no question.
+- Do not ask for a fact that is directly copied from one sentence.
+- The answer must be uniquely supported by the transcript.
+- Keep the question natural and 5-25 words long.
+
+Format exactly:
+QUESTION: ...
+ANSWER: ...
+EVIDENCE: ...

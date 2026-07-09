@@ -1,0 +1,23 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE category C2 question. C2 means: choose an entity that IS mentioned in the transcript, then ask about an attribute/detail of that entity that the transcript does NOT state and does NOT imply.
+
+Allowed missing attributes:
+- color, size, age, price, material, exact time, exact location detail, appearance, owner, reason, method, quantity, or name of an unstated subpart.
+
+Bad C2 questions to avoid:
+- yes/no questions;
+- asking about an entity that is not in the transcript (that would be C1, not C2);
+- asking for an attribute that is actually stated;
+- asking for an attribute that can be inferred;
+- asking for broad background knowledge outside the transcript.
+
+Before writing the final answer, silently check:
+1. Does the entity appear in the transcript? If no, reject it.
+2. Is the requested attribute absent from the transcript? If no, reject it.
+3. Could the requested attribute be inferred from another sentence? If yes, reject it.
+
+Return exactly ONE JSON object and no markdown:
+{"passage_id":"{passage_id}","category":"C","subtype":"missing-attribute","question":"...","entity":"...","missing_attribute":"...","gold_answer":"UNANSWERABLE","why_unanswerable":"...","generator":"manual-chat/c2-v2"}

@@ -1,0 +1,27 @@
+Here is a transcript of a short audio passage:
+
+"{transcript}"
+
+Write ONE category B question. Category B means: the answer is NOT directly stated in one sentence, but CAN be inferred by combining or transforming information from the transcript.
+
+Good B questions require one of these operations:
+- arithmetic: compute a difference, total, remainder, ratio, or time gap;
+- comparison: decide which is earlier/later, larger/smaller, longer/shorter, more/less;
+- cause/effect: infer why something happened from an explicitly stated cause;
+- chronology: infer what happened before/after another event;
+- combination: combine at least two separate facts from the transcript.
+
+Bad questions to avoid:
+- asking for a name, date, place, title, organization, or number that appears directly in the transcript;
+- asking "which person/place/object..." when the answer is copied from one sentence;
+- asking a yes/no question;
+- asking a question that can be answered from common knowledge without the transcript;
+- asking a vague "why" question unless the cause is explicitly supported by the transcript.
+
+Before writing the final answer, silently check:
+1. Would a reader need to combine, compare, calculate, or infer? If no, reject it.
+2. Is the exact answer phrase written in the transcript? If yes, reject it unless the question still requires calculation/comparison.
+3. Is the answer uniquely supported by the transcript? If no, reject it.
+
+Return exactly ONE JSON object and no markdown:
+{"passage_id":"{passage_id}","category":"B","subtype":"inference","inference_type":"arithmetic|comparison|cause_effect|chronology|combination","question":"...","gold_answer":"...","evidence":"quote the sentence(s) used","why_not_A":"explain why this is not directly stated","generator":"manual-chat/b-v2"}
