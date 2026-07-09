@@ -39,6 +39,55 @@ src/                ← inference.py (M1) · judge.py, metrics.py (M3)
 configs/ notebooks/ results/
 ```
 
+## Подготовка данных
+
+Установить зависимости:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Собрать локальный рабочий пул Spoken-SQuAD:
+
+```bash
+python data/setup_dataset.py --all
+```
+
+Команде нужен доступ к Hugging Face.
+
+Она скачивает `AudioLLMs/spoken_squad_test`, экспортирует WAV-аудио, матчится с оригинальными clean SQuAD validation contexts, оставляет все строки с длительностью аудио 20-60 секунд и пишет черновой пул:
+
+```text
+data/generation/data.csv
+```
+
+Быстрый smoke test:
+
+```bash
+python data/setup_dataset.py --all --limit-rows 100
+```
+
+Полезные частичные команды:
+
+```bash
+python data/setup_dataset.py --download
+python data/setup_dataset.py --export-audio
+python data/setup_dataset.py --match-transcripts
+python data/setup_dataset.py --build-passages
+```
+
+`data.csv` не является финальным отбором. Из этого пула нужно вручную выбрать финальные 40 пассажей и сохранить их как `data/generation/passages.csv` после проверки качества аудио, транскрипта, длительности, разнообразия и числа фактов.
+
+## TTS-подстраховка
+
+Если аудиофайл битый, можно сгенерировать замену через бесплатный Edge TTS:
+
+```bash
+python data/generation/tts_fallback.py --text "Your passage text here" --out data/generation/fallback.wav
+```
+
+На выходе WAV, 16 kHz, mono, 16-bit.
+
 ## Установка и запуск (команды станут рабочими по мере закрытия задач — см. docs/ru/PLAN.md §3)
 
 ```bash
