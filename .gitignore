@@ -21,3 +21,13 @@ data/generation/passages_selected_40_review.csv
 
 # Local helper scripts used during dataset download/prep.
 utils/datasets_downloads/
+
+# Run outputs & model artifacts (added with repo skeleton, 2026-07-08)
+results/**/*.jsonl
+results/**/*.json
+*.ckpt
+*.safetensors
+.ipynb_checkpoints/
+
+# Literature PDFs — local-only, download guide in papers/README.md
+papers/*.pdf

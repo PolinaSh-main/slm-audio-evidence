@@ -3,3 +3,14 @@ edge-tts>=7.2.3
 huggingface_hub>=0.36.2
 miniaudio>=1.61
 pyarrow>=23.0.1
+# Modeling & evaluation deps (M1/M3) — pin exact versions before the Jul 12 tag
+torch
+transformers>=4.44
+accelerate
+bitsandbytes
+soundfile
+librosa
+pandas
+matplotlib
+jsonlines
+rapidfuzz
