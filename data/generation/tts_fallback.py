@@ -1,20 +1,21 @@
 """Generate a 16 kHz mono WAV fallback audio file with edge-tts.
 
 Examples:
-    python data/generation/tts_fallback.py --text "Hello world" --out tmp/fallback.wav
-    python data/generation/tts_fallback.py --text-file passage.txt --out tmp/fallback.wav
+    python data\generation\tts_fallback.py --text "Your passage text here" --out data\generation\fallback.wav
+    python data/generation/tts_fallback.py --text-file passage.txt --out data\generation\fallback.wav
 """
 
 from __future__ import annotations
 
 import argparse
 import asyncio
-import tempfile
 import wave
 from pathlib import Path
 
 
 DEFAULT_VOICE = "en-US-JennyNeural"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Generate WAV fallback audio from text using free edge-tts."
@@ -40,7 +41,7 @@ def read_text(args: argparse.Namespace) -> str:
     return text
 
 
-async def synthesize_edge_mp3(text: str, out_path: Path, args: argparse.Namespace) -> None:
+async def synthesize_edge_mp3(text: str, args: argparse.Namespace) -> bytes:
     try:
         import edge_tts
     except ImportError as exc:
@@ -53,7 +54,13 @@ async def synthesize_edge_mp3(text: str, out_path: Path, args: argparse.Namespac
         "pitch": args.pitch,
     }
     communicate = edge_tts.Communicate(text, **kwargs)
-    await communicate.save(str(out_path))
+    chunks: list[bytes] = []
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            chunks.append(chunk["data"])
+    if not chunks:
+        raise RuntimeError("edge-tts did not return audio data.")
+    return b"".join(chunks)
 
 
 def is_wav_16khz_mono(path: Path) -> bool:
@@ -68,14 +75,14 @@ def is_wav_16khz_mono(path: Path) -> bool:
         return False
 
 
-def convert_mp3_to_wav(in_path: Path, out_path: Path) -> None:
+def convert_mp3_to_wav(mp3_data: bytes, out_path: Path) -> None:
     try:
         import miniaudio
     except ImportError as exc:
         raise RuntimeError("miniaudio is not installed. Run: python -m pip install -r requirements.txt") from exc
 
-    decoded = miniaudio.decode_file(
-        str(in_path),
+    decoded = miniaudio.decode(
+        mp3_data,
         output_format=miniaudio.SampleFormat.SIGNED16,
         nchannels=1,
         sample_rate=16000,
@@ -93,10 +100,8 @@ async def main() -> None:
     text = read_text(args)
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        tmp_audio = Path(tmp_dir) / "edge_tts_audio.mp3"
-        await synthesize_edge_mp3(text, tmp_audio, args)
-        convert_mp3_to_wav(tmp_audio, args.out)
+    mp3_data = await synthesize_edge_mp3(text, args)
+    convert_mp3_to_wav(mp3_data, args.out)
 
     if not is_wav_16khz_mono(args.out):
         raise RuntimeError(f"Output is not a valid 16 kHz mono 16-bit WAV: {args.out}")

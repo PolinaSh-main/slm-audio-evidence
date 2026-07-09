@@ -39,6 +39,55 @@ src/                ← inference.py (M1) · judge.py, metrics.py (M3)
 configs/ notebooks/ results/
 ```
 
+## Data setup
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Build the local Spoken-SQuAD working data:
+
+```bash
+python data/setup_dataset.py --all
+```
+
+This command requires internet access to Hugging Face.
+
+This downloads `AudioLLMs/spoken_squad_test` from Hugging Face, exports WAV audio files, joins each audio row with the original clean SQuAD validation context, keeps all rows with 20-60 second audio, and writes the draft pool:
+
+```text
+data/generation/data.csv
+```
+
+For a quick smoke test:
+
+```bash
+python data/setup_dataset.py --all --limit-rows 100
+```
+
+Useful partial commands:
+
+```bash
+python data/setup_dataset.py --download
+python data/setup_dataset.py --export-audio
+python data/setup_dataset.py --match-transcripts
+python data/setup_dataset.py --build-passages
+```
+
+`data.csv` is not the final selection. Manually choose the final 40 passages from this pool and save them as `data/generation/passages.csv` after checking audio quality, transcript quality, duration, diversity, and fact count.
+
+## TTS fallback
+
+If an audio file is broken, generate a replacement WAV with free Edge TTS:
+
+```bash
+python data/generation/tts_fallback.py --text "Your passage text here" --out data/generation/fallback.wav
+```
+
+The output is WAV, 16 kHz, mono, 16-bit.
+
 ## Setup & run (commands become real as tasks land — see docs/en/PLAN.md §3)
 
 ```bash
