@@ -21,7 +21,6 @@ All knowledge lives in **[docs/en/](docs/en/)** (English) and **[docs/ru/](docs/
 | [ROLE_M1](docs/en/ROLE_M1.md) / [ROLE_M2](docs/en/ROLE_M2.md) / [ROLE_M3](docs/en/ROLE_M3.md) | **Your tasks, step by step** — self-contained | you, daily |
 | [PROPOSAL.md](docs/en/PROPOSAL.md) | Vision & science: hypotheses, literature, experiments, per-tier claims | lead, curator, Q&A prep |
 | [PLAN.md](docs/en/PLAN.md) | Execution: schedule, tiers & switching, data contracts, checklist | lead, checkpoints |
-| [KANBAN_M1.md](docs/en/KANBAN_M1.md) | M1's board cards with checklists | M1 |
 
 Shared working logs: [docs/decisions.md](docs/decisions.md) (every decision, same-day schema announcements) · [docs/related_work.md](docs/related_work.md) (paper notes, split M1/M2/M3). Papers: [papers/README.md](papers/README.md) (reading guide; PDFs local-only, gitignored).
 

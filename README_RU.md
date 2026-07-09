@@ -21,7 +21,6 @@
 | [ROLE_M1](docs/ru/ROLE_M1.md) / [ROLE_M2](docs/ru/ROLE_M2.md) / [ROLE_M3](docs/ru/ROLE_M3.md) | **Твои задачи по шагам** — самодостаточные | тебе, ежедневно |
 | [PROPOSAL.md](docs/ru/PROPOSAL.md) | Видение и наука: гипотезы, литература, эксперименты, утверждения по уровням | лиду, куратору, подготовка к Q&A |
 | [PLAN.md](docs/ru/PLAN.md) | Исполнение: расписание, уровни и переключение, контракты данных, чек-лист | лиду, контрольные точки |
-| [KANBAN_M1.md](docs/ru/KANBAN_M1.md) | Карточки доски M1 с чек-листами | M1 |
 
 Общие рабочие журналы: [docs/decisions.md](docs/decisions.md) (каждое решение; изменения схем объявляются в тот же день) · [docs/related_work.md](docs/related_work.md) (заметки по статьям, деление M1/M2/M3). Статьи: [papers/README.md](papers/README.md) (гид по чтению; PDF только локально, в .gitignore).
 
