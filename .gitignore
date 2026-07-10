@@ -29,6 +29,9 @@ data/generation/*
 data/generation/responses/*
 !data/generation/responses/b_v2.jsonl
 !data/generation/responses/c_v2.jsonl
+!data/generation/requests/
+data/generation/requests/*
+!data/generation/requests/.gitkeep
 !data/generation/prompts/
 !data/generation/prompts/*.txt
 

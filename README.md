@@ -78,6 +78,40 @@ python data/setup_dataset.py --build-passages
 
 `data.csv` is not the final selection. Manually choose the final 40 passages from this pool and save them as `data/generation/passages.csv` after checking audio quality, transcript quality, duration, diversity, and fact count.
 
+## Question generation
+
+Prompt templates live in:
+
+```text
+data/generation/prompts/
+```
+
+Create copy-paste LLM request batches from the final `passages.csv`:
+
+```bash
+python data/generation/make_generation_requests.py --categories b c1 c2 c3 c4 --batch-size 5
+```
+
+Save manual LLM answers as batch JSONL files under `data/generation/responses/`, then merge and filter:
+
+```bash
+python data/generation/merge_responses.py --patterns b_batch_*.jsonl --out data/generation/responses/b_v2.jsonl
+python data/generation/filter.py --input-jsonl data/generation/responses/b_v2.jsonl --mode b
+
+python data/generation/merge_responses.py --patterns c*_batch_*.jsonl --out data/generation/responses/c_v2.jsonl
+python data/generation/filter.py --input-jsonl data/generation/responses/c_v2.jsonl --mode c
+```
+
+Filtered outputs:
+
+```text
+data/generation/candidates_b_v2.jsonl
+data/generation/candidates_c_v2.jsonl
+data/generation/candidates.jsonl
+data/generation/filter_log_b_v2.csv
+data/generation/filter_log_c_v2.csv
+```
+
 ## TTS fallback
 
 If an audio file is broken, generate a replacement WAV with free Edge TTS:

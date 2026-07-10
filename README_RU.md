@@ -78,6 +78,40 @@ python data/setup_dataset.py --build-passages
 
 `data.csv` не является финальным отбором. Из этого пула нужно вручную выбрать финальные 40 пассажей и сохранить их как `data/generation/passages.csv` после проверки качества аудио, транскрипта, длительности, разнообразия и числа фактов.
 
+## Генерация вопросов
+
+Шаблоны промптов лежат здесь:
+
+```text
+data/generation/prompts/
+```
+
+Собрать copy-paste batch-запросы для LLM из финального `passages.csv`:
+
+```bash
+python data/generation/make_generation_requests.py --categories b c1 c2 c3 c4 --batch-size 5
+```
+
+Ответы нейронки сохраняются batch-файлами JSONL в `data/generation/responses/`, затем объединяются и фильтруются:
+
+```bash
+python data/generation/merge_responses.py --patterns b_batch_*.jsonl --out data/generation/responses/b_v2.jsonl
+python data/generation/filter.py --input-jsonl data/generation/responses/b_v2.jsonl --mode b
+
+python data/generation/merge_responses.py --patterns c*_batch_*.jsonl --out data/generation/responses/c_v2.jsonl
+python data/generation/filter.py --input-jsonl data/generation/responses/c_v2.jsonl --mode c
+```
+
+Результаты после фильтра:
+
+```text
+data/generation/candidates_b_v2.jsonl
+data/generation/candidates_c_v2.jsonl
+data/generation/candidates.jsonl
+data/generation/filter_log_b_v2.csv
+data/generation/filter_log_c_v2.csv
+```
+
 ## TTS-подстраховка
 
 Если аудиофайл битый, можно сгенерировать замену через бесплатный Edge TTS:
