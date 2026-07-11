@@ -1,0 +1,1 @@
+Listen to the audio and answer the question using ONLY information from the audio. If the audio does not contain the information needed, reply exactly: "The audio does not provide that information." Question: {question}

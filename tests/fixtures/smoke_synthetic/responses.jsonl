@@ -1,0 +1,12 @@
+{"id": "syn-a1", "model": "synthetic", "strategy": "plain", "response": "It was built in 1912.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:00+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-a2", "model": "synthetic", "strategy": "plain", "response": "The city mentioned is Paris.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:01+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-a3", "model": "synthetic", "strategy": "plain", "response": "He had two sisters.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:02+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-a4", "model": "synthetic", "strategy": "plain", "response": "The audio does not provide that information.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:03+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-b1", "model": "synthetic", "strategy": "plain", "response": "28 years.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:04+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-b2", "model": "synthetic", "strategy": "plain", "response": "I don't know.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:05+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-b3", "model": "synthetic", "strategy": "plain", "response": "Probably twice, though it is hard to tell.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:06+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-c1", "model": "synthetic", "strategy": "plain", "response": "The audio does not provide that information.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:07+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-c2", "model": "synthetic", "strategy": "plain", "response": "There is no mention of the car color.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:08+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-c3", "model": "synthetic", "strategy": "plain", "response": "The jacket was blue.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:09+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-c4", "model": "synthetic", "strategy": "plain", "response": "She arrived at 6 pm by taxi.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:10+00:00", "prompt_version": "plain.txt"}
+{"id": "syn-c5", "model": "synthetic", "strategy": "plain", "response": "Perhaps it was his brother.", "samples": null, "latency_s": 0.1, "ts": "2026-07-10T12:00:11+00:00", "prompt_version": "plain.txt"}

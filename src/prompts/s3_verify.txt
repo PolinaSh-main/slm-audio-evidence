@@ -1,0 +1,1 @@
+STUB — not implemented yet (main phase / M4). Intent: two-stage self-verification — the model answers, then is asked "Is this answer actually supported by the audio? Revise if not." Requires two calls per item in src/inference.py.

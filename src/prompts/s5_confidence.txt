@@ -1,0 +1,1 @@
+STUB — not implemented yet (main phase / M4). Intent: ask the model to output a 0-100 confidence next to its answer; a threshold sweep over that confidence produces the risk-coverage curve.
