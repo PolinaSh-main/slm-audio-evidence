@@ -49,15 +49,25 @@ def calculate_all_metrics(data: List[Dict]) -> Dict:
     hedges = sum(1 for x in cat_c if x["label"] == "hedge")
     results["hedge_rate_on_c"] = hedges / n_c if n_c > 0 else 0.0
     results["hedge_rate_on_c_ci"] = wilson_confidence_interval(hedges, n_c)
+
+    # 3b. Доля НЕ-отказов на C (галлюцинации + уклонения) — суммарный провал отказа
+    no_abstain = hallucinations + hedges
+    results["no_abstain_rate_on_c"] = no_abstain / n_c if n_c > 0 else 0.0
+    results["no_abstain_rate_on_c_ci"] = wilson_confidence_interval(no_abstain, n_c)
     
     # 4. Точность на отвечаемых вопросах (Категории A и B)
     correct_a = sum(1 for x in cat_a if x["correct"] is True)
     results["accuracy_a"] = correct_a / n_a if n_a > 0 else 0.0
     results["accuracy_a_ci"] = wilson_confidence_interval(correct_a, n_a)
     
-    correct_b = sum(1 for x in cat_b if x["correct"] is True)
-    results["accuracy_b"] = correct_b / n_b if n_b > 0 else 0.0
-    results["accuracy_b_ci"] = wilson_confidence_interval(correct_b, n_b)
+    # Для B считаем точность только по уже РАЗМЕЧЕННЫМ ответам (correct is True/False).
+    # Ответы с correct=None (ждут ручной разметки) в знаменатель не входят.
+    graded_b = [x for x in cat_b if x["correct"] is not None]
+    correct_b = sum(1 for x in graded_b if x["correct"] is True)
+    results["accuracy_b"] = correct_b / len(graded_b) if graded_b else None
+    results["accuracy_b_ci"] = wilson_confidence_interval(correct_b, len(graded_b)) if graded_b else (0.0, 0.0)
+    results["b_graded"] = len(graded_b)
+    results["b_pending"] = sum(1 for x in cat_b if x["correct"] is None)
     
     # 5. Избыточные отказы (Over-refusal) - когда модель отказалась на A или B
     over_refusals = sum(1 for x in (cat_a + cat_b) if x["label"] == "abstain")
@@ -92,12 +102,17 @@ def generate_markdown_report(metrics: Dict, model_name: str, strategy: str) -> s
     report.append(f"# Отчет о метриках для {model_name} ({strategy})\n")
     report.append("| Метрика | Значение (95% Доверительный интервал) |")
     report.append("| :--- | :--- |")
-    report.append(f"| **Доля галлюцинаций (на C)** ⬇ | {fmt(metrics['hallucination_rate'], metrics['hallucination_rate_ci'])} |")
-    report.append(f"| **Корректные отказы (на C)** ⬆ | {fmt(metrics['correct_refusal_rate'], metrics['correct_refusal_rate_ci'])} |")
+    report.append(f"| **Доля галлюцинаций (на C)** (lower=better) | {fmt(metrics['hallucination_rate'], metrics['hallucination_rate_ci'])} |")
+    report.append(f"| **Корректные отказы (на C)** (higher=better) | {fmt(metrics['correct_refusal_rate'], metrics['correct_refusal_rate_ci'])} |")
     report.append(f"| **Уклонения (на C)** | {fmt(metrics['hedge_rate_on_c'], metrics['hedge_rate_on_c_ci'])} |")
-    report.append(f"| **Точность на Категории A** ⬆ | {fmt(metrics['accuracy_a'], metrics['accuracy_a_ci'])} |")
-    report.append(f"| **Точность на Категории B** ⬆ | {fmt(metrics['accuracy_b'], metrics['accuracy_b_ci'])} |")
-    report.append(f"| **Избыточные отказы (на A и B)** ⬇ | {fmt(metrics['over_refusal_rate'], metrics['over_refusal_rate_ci'])} |")
+    report.append(f"| **Не-отказ на C суммарно** (lower=better) | {fmt(metrics['no_abstain_rate_on_c'], metrics['no_abstain_rate_on_c_ci'])} |")
+    if metrics['accuracy_b'] is None:
+        acc_b = f"pending manual grading ({metrics['b_pending']} answers)"
+    else:
+        acc_b = fmt(metrics['accuracy_b'], metrics['accuracy_b_ci']) + f" (graded {metrics['b_graded']}, pending {metrics['b_pending']})"
+    report.append(f"| **Точность на Категории A** (higher=better) | {fmt(metrics['accuracy_a'], metrics['accuracy_a_ci'])} |")
+    report.append(f"| **Точность на Категории B** (higher=better) | {acc_b} |")
+    report.append(f"| **Избыточные отказы (на A и B)** (lower=better) | {fmt(metrics['over_refusal_rate'], metrics['over_refusal_rate_ci'])} |")
     report.append("\n## Метрики классификации отказов (Refusal Quality)")
     report.append(f"- **Precision (Точность отказов):** {metrics['refusal_precision']:.3f}")
     report.append(f"- **Recall (Полнота отказов):** {metrics['refusal_recall']:.3f}")

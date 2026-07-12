@@ -5,7 +5,7 @@ from rapidfuzz import fuzz
 REFUSAL_PHRASES = [
     "does not provide", "doesnt provide", "not mentioned", "no information", 
     "cannot be determined", "cant be determined", "cannot answer", 
-    "unable to determine", "not specified", "not stated", "i don't know", 
+    "unable to determine", "not specified", "not stated", "i dont know", 
     "there is no mention", "unanswerable", "cannot determine", "cant determine", "dont know"
 ]
 
@@ -39,7 +39,7 @@ def classify_response(response: str) -> str:
     # 3. Если ничего из этого не нашлось — это содержательный ответ
     return "answer"
 
-def check_correctness(category: str, label: str, response: str, gold_answer: str) -> bool:
+def check_correctness(category: str, label: str, response: str, gold_answer: str):
     """
     Проверяет, правильный ли ответ дала модель.
     
@@ -68,9 +68,10 @@ def check_correctness(category: str, label: str, response: str, gold_answer: str
         similarity = fuzz.partial_ratio(cleaned_response, cleaned_gold)
         return similarity >= 85  # Если совпадение 85% и выше — ответ верный
         
-    # Для категории B (где формулировки сложные) в будущем запустим LLM-судью.
-    # Пока возвращаем False как заглушку.
-    return False
+    # Для категории B содержательные ответы оценивает человек (ручная разметка).
+    # До разметки возвращаем None ("ещё не оценено") — НЕ False, иначе accuracy_B
+    # покажет ложный ноль. None-значения исключаются из знаменателя в metrics.py.
+    return None
 
 # =====================================================================
 # ТЕСТОВЫЙ НАБОР ИЗ 20 ПРИМЕРОВ (DEV-SET) ДЛЯ ПРОВЕРКИ КЛАССИФИКАТОРА
@@ -127,8 +128,8 @@ dev_set = [
     {
         "id": 8, "category": "B", "gold_answer": "three times",
         "response": "three times",
-        "expected_label": "answer", "expected_correct": False,  # Ожидаем False из-за заглушки B
-        "description": "Верный ответ для B (пока оценивается как False без LLM)"
+        "expected_label": "answer", "expected_correct": None,  # None = ждёт ручной разметки
+        "description": "Верный ответ для B (до ручной разметки correctness = None)"
     },
     {
         "id": 9, "category": "B", "gold_answer": "three times",
