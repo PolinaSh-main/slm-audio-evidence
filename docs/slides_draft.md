@@ -55,9 +55,9 @@ Curator: Assel Yermekova · github.com/ladnlav/slm-audio-evidence · July 12, 20
 
 🎤 **M2:** пайплайн + как проверяли; число согласия — твой главный козырь. Вероятный вопрос: «почему C-вопросы правда неотвечаемые?» → «каждый проверен человеком, который его не создавал».
 
-## Slide 6 — Two systems × two prompts = four runs
+## Slide 6 — One system × two prompts (pilot)
 **Qwen2-Audio-7B-Instruct** — end-to-end Speech LLM (hears the waveform). *The system under test.*
-**Cascade: Whisper → Qwen2.5-7B** — transcribe first, answer from text. *Diagnostic twin: if it also hallucinates, the failure is reasoning, not hearing.*
+**Main phase adds a cascade twin (Whisper → text LLM):** transcribe first, answer from text — separates "didn't hear it" failures from "can't reason about evidence".
 
 **PLAIN** prompt: "Listen to the audio and answer the question." — default behaviour.
 **S1 "IDK"** prompt: "Answer using ONLY the audio. If it does not contain the information, reply exactly: 'The audio does not provide that information.'" — one added instruction, zero training.
@@ -72,20 +72,19 @@ Curator: Assel Yermekova · github.com/ladnlav/slm-audio-evidence · July 12, 20
 
 🎤 **M3:** цепочка «правила → fuzzy → человек»; сказать про фикстур — это ответ на «почему верить вашим цифрам».
 
-## Slide 8 — Pilot results ({{N_TOTAL}} items, 4 runs)
+## Slide 8 — Pilot results (100 items, 2 runs)
 | Run | Halluc. on C ↓ | Correct abstain ↑ | Accuracy A ↑ | Over-refusal ↓ |
 |---|---|---|---|---|
 | Qwen2-Audio · plain | {{H1}}% | {{CA1}}% | {{AA1}}% | {{OR1}}% |
 | Qwen2-Audio · S1 IDK | {{H2}}% | {{CA2}}% | {{AA2}}% | {{OR2}}% |
-| Cascade · plain | {{H3}}% | {{CA3}}% | {{AA3}}% | {{OR3}}% |
-| Cascade · S1 IDK | {{H4}}% | {{CA4}}% | {{AA4}}% | {{OR4}}% |
 
-{{BAR_CHART: hallucination vs over-refusal, plain vs S1, per system}}
+Dataset: 100 items frozen (30 A / 30 B / 40 C) · checker agreement on shared items: **80%**
+
+{{BAR_CHART: hallucination vs over-refusal, plain vs S1}}
 
 Model, verbatim: ❌ "{{HALLUCINATION_QUOTE}}" · ✅ "{{CORRECT_ABSTAIN_QUOTE}}" · ⚠️ "{{OVER_REFUSAL_QUOTE}}"
 
-🎤 **M3:** таблица + одна цитата галлюцинации вслух. Формулировка вывода: «plain-модель выдумывает в {{H1}}% случаев; одна инструкция снижает до {{H2}}%, цена — {{OR2}}% избыточных отказов».
-*(Если каскад не успеет — строки 3–4 удалить, сказать «каскад в основной фазе».)*
+🎤 **M3:** таблица + одна цитата галлюцинации вслух. Формулировка вывода: «plain-модель выдумывает в {{H1}}% случаев; одна инструкция снижает до {{H2}}%, цена — {{OR2}}% избыточных отказов». Если спросят про каскад: «перенесён в основную фазу, обёртка уже в репо».
 
 ## Slide 9 — Built already · main phase next
 **Working today (in the repo):** dataset pipeline (selection → generation → filters → human verification → frozen pilot + data card) · inference harness (2 systems × 3 strategies, resumable, Colab notebook) · evaluation (classifier + metrics with CIs, fixture-validated) · bilingual docs (proposal, plan, glossary, per-role instructions).
