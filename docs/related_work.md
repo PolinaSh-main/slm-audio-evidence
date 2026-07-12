@@ -5,7 +5,26 @@ Split (due Jul 10, PLAN.md §3): **M1** — positioning & models (01, 02, 16, 19
 
 ## Positioning & closest work (M1)
 
-*(to fill — start with 01 AQUA-Bench and 02 Towards Reliable LALM)*
+**01 — AQUA-Bench (Kuan & Lee, arXiv 2601.12248, Jan 2026)**
+- Benchmark for *unanswerability* in audio QA: absent answer option, incompatible answer set, incompatible audio–question pair.
+- Format is multiple-choice over general audio (sound events); models do well on answerable items, markedly worse on unanswerable ones — confirms the problem is real and current.
+- Measures only; proposes no mitigation.
+- **Our gap:** spoken-content QA (not sound events), free-form answers (not MCQ), and a head-to-head comparison of abstention strategies — we start where they stop.
+
+**02 — Towards Reliable LALM (Ma et al., arXiv 2505.19294)**
+- Systematically tests ways to make audio-LLMs refuse what they don't know: training-free (multimodal chain-of-thought, IDK instructions) and training-based (SFT).
+- Introduces the Reliability Gain Index (RGI) — a metric for how much a method improves refusal behaviour beyond what it costs.
+- Finds "reliability" transfers across audio modalities like a meta-ability.
+- **We adopt:** their IDK-prompt idea is our S1; RGI is planned for the main phase.
+
+**16 — Qwen2-Audio (Chu et al., arXiv 2407.10759)**
+- Open 7B audio-language model: Whisper-style encoder + Qwen LLM, natural-language prompts instead of task tags, DPO for factuality.
+- Two modes (voice chat / audio analysis) without a mode switch; strong AIR-Bench results.
+- **Our primary system**; practical note: answers degrade quietly if the chat template deviates from the model card.
+
+**19 — Whisper (Radford et al., arXiv 2212.04356)**
+- ASR trained on 680k h of weakly supervised audio; robust zero-shot transcription.
+- **Role here:** front-end of our cascade baseline (Whisper → text LLM), which isolates "didn't hear it" failures from "can't reason about evidence" — the key ablation for interpreting hallucination numbers.
 
 ## Datasets & benchmarks (M2)
 
