@@ -40,6 +40,7 @@ results/**/*.jsonl
 results/**/*.json
 *.ckpt
 *.safetensors
+*.zip
 .ipynb_checkpoints/
 
 # Literature PDFs — local-only, download guide in papers/README.md
