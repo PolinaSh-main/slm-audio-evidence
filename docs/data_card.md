@@ -8,7 +8,7 @@ This is a small English evaluation dataset for testing whether Speech LLMs can a
 - **B / inference:** answer is not quoted word-for-word but follows from the transcript.
 - **C / unanswerable:** transcript does not contain enough information; gold answer is `UNANSWERABLE`.
 
-Current build state: 40 manually selected passages, 40 native A questions, and 423 filtered B/C candidates. Human verification and final `data/manifests/pilot.jsonl` freeze are still pending.
+Current build state: 40 manually selected passages, 40 native A questions, and 423 filtered B/C candidates went through non-author human verification; **the pilot was frozen on 2026-07-12 as `data/manifests/pilot.jsonl` with 100 items** (see Counts below). The manifest is append-only from now on; fixes go to versioned files (`pilot_v2.jsonl`).
 
 ## Record Schema
 
@@ -44,7 +44,8 @@ Current build state: 40 manually selected passages, 40 native A questions, and 4
 4. **A questions:** kept one native SQuAD question per passage in `data/generation/questions_a.csv`.
 5. **B/C generation:** generated prompts from `data/generation/prompts/*-v2.txt`; manual LLM outputs were merged into `responses/b_v2.jsonl` and `responses/c_v2.jsonl`.
 6. **Filtering:** `data/generation/filter.py` rejected yes/no questions, length violations, duplicate questions within a passage, direct-answer B items, and unsafe C keyword overlaps.
-7. **Verification:** pending. Protocol: a non-author checks category/subtype correctness, B inference validity, C unanswerability, and naturalness; first 20 items should be double-checked by M1 and M3 to compute agreement.
+7. **Verification (done 2026-07-12):** a balanced sample of 105 candidates was split between two non-author checkers (M1: 63 rows, M3: 62 rows) with 20 shared calibration items. Each item was checked for category/subtype correctness, B inference validity, C unanswerability from the transcript, and naturalness; verdicts `ok`/`fix`/`drop`. **Calibration agreement: 16/20 = 80%**; the 4 disputed items were dropped by rule. 3 C-questions were kept after rewording (`fix`).
+8. **Freeze:** `scripts/freeze_pilot.py` assembled verified items up to per-subtype quotas plus 30 native A questions into `data/manifests/pilot.jsonl` (100 items).
 
 ## Counts
 
@@ -65,6 +66,17 @@ Current build state: 40 manually selected passages, 40 native A questions, and 4
 | `false-presupposition` | 40 |
 | `off-topic` | 40 |
 
+**Frozen pilot (2026-07-12), 100 items:**
+
+| Category / subtype | Count |
+|---|---:|
+| A / `stated` | 30 |
+| B / `inference` | 30 |
+| C / `absent-entity` | 12 |
+| C / `missing-attribute` | 12 |
+| C / `false-presupposition` | 8 |
+| C / `off-topic` | 8 |
+
 Filter logs:
 
 - `data/generation/filter_log_b_v2.csv`: 14 rejected (`b_answer_directly_in_transcript`, yes/no, or too long).
@@ -75,9 +87,9 @@ Filter logs:
 - Audio is read from text, not recorded as natural conversation.
 - English only.
 - One source domain: SQuAD/Wikipedia-style passages.
-- Small dataset size: 40 passages and 90-120 final verified items.
-- Generated B/C questions require manual verification.
-- Inter-annotator agreement is still `TBD`.
+- Small dataset size: 40 passages and 100 final verified items.
+- Generated B/C questions passed one round of non-author verification; disputed items were dropped rather than adjudicated (deadline constraint).
+- Inter-annotator agreement on shared calibration items: 80% (16/20).
 
 ## How To Add a Compatible Item
 
