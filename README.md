@@ -31,7 +31,7 @@ README(_RU).md      ← you are here
 docs/en/ · docs/ru/ ← all project docs, one folder per language (7 files each)
 docs/               ← shared logs: decisions.md, related_work.md, data_card.md (soon)
 papers/             ← reading guide (+ local PDFs, not committed)
-data/manifests/     ← eval-set JSONL (pilot.jsonl appears at the Jul 10 freeze)
+data/manifests/     ← eval-set JSONL (pilot.jsonl — frozen 2026-07-12: 100 items)
 data/generation/    ← passage selection, A-questions, TTS fallback (M2 — already started)
 src/models/         ← wrappers: base.py, qwen2_audio.py, cascade.py (M1)
 src/prompts/        ← strategy files: plain.txt, s1_idk.txt, … (M1)
@@ -122,15 +122,27 @@ python data/generation/tts_fallback.py --text "Your passage text here" --out dat
 
 The output is WAV, 16 kHz, mono, 16-bit.
 
-## Setup & run (commands become real as tasks land — see docs/en/PLAN.md §3)
+## Run the experiment
 
 ```bash
 pip install -r requirements.txt
+# inference (GPU; or open notebooks/colab_run.ipynb in Colab):
 python -m src.inference --model qwen2audio --strategy plain --data data/manifests/pilot.jsonl --out results/
+# evaluation:
+python -m src.run_eval --responses results/<run_id>/responses.jsonl
 ```
 
-## Working rules
+## Pilot results (100 items, 4 runs, 2026-07-12)
 
-- Branches `m1/…`, `m2/…`, `m3/…`; merge into `main` via PR + 1 review; no direct pushes.
+| Run | Halluc. on C ↓ | Correct abstain ↑ | Acc. A ↑ | Acc. B ↑ | Over-refusal ↓ |
+|---|---:|---:|---:|---:|---:|
+| Qwen2-Audio · plain | **92.5%** | 2.5% | 23% | 27% | 7% |
+| Qwen2-Audio · S1 IDK | 17.5% | 82.5% | 13% | 7% | **62%** |
+| Cascade · plain | 62.5% | 27.5% | 87% | 90% | 0% |
+| Cascade · S1 IDK | **2.5%** | **97.5%** | 87% | 83% | 7% |
+
+One "I-don't-know" instruction cuts hallucination 92.5%→17.5% on the Speech LLM but costs 62% over-refusal; the cascade takes the same instruction almost for free — the bottleneck is epistemic reasoning, not hearing. Details, quotes, and grading provenance: [results/pilot_summary.md](results/pilot_summary.md).
+
+## Working rules
 - Every decision → [docs/decisions.md](docs/decisions.md); data-schema changes announced there the same day. Canonical schemas: [docs/en/PLAN.md §2](docs/en/PLAN.md).
 - Every document exists in both languages ([docs/en](docs/en/) ↔ [docs/ru](docs/ru/)), cross-linked. Each fact has one home; everything else links to it.

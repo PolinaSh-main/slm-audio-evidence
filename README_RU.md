@@ -31,7 +31,7 @@ README(_RU).md      ← ты здесь
 docs/en/ · docs/ru/ ← все документы проекта, папка на язык (по 7 файлов)
 docs/               ← общие журналы: decisions.md, related_work.md, data_card.md (скоро)
 papers/             ← гид по чтению (+ локальные PDF, не коммитятся)
-data/manifests/     ← JSONL оценочного набора (pilot.jsonl появится при заморозке 10 июля)
+data/manifests/     ← JSONL оценочного набора (pilot.jsonl — заморожен 12.07.2026: 100 элементов)
 data/generation/    ← отбор пассажей, A-вопросы, TTS-подстраховка (M2 — уже начато)
 src/models/         ← обёртки: base.py, qwen2_audio.py, cascade.py (M1)
 src/prompts/        ← файлы стратегий: plain.txt, s1_idk.txt, … (M1)
@@ -122,15 +122,27 @@ python data/generation/tts_fallback.py --text "Your passage text here" --out dat
 
 На выходе WAV, 16 kHz, mono, 16-bit.
 
-## Установка и запуск (команды станут рабочими по мере закрытия задач — см. docs/ru/PLAN.md §3)
+## Запуск эксперимента
 
 ```bash
 pip install -r requirements.txt
+# инференс (нужен GPU; либо открой notebooks/colab_run.ipynb в Colab):
 python -m src.inference --model qwen2audio --strategy plain --data data/manifests/pilot.jsonl --out results/
+# оценка:
+python -m src.run_eval --responses results/<run_id>/responses.jsonl
 ```
 
-## Правила работы
+## Результаты пилота (100 элементов, 4 прогона, 12.07.2026)
 
-- Ветки `m1/…`, `m2/…`, `m3/…`; в `main` — через PR + 1 ревью; прямых пушей нет.
+| Прогон | Галлюц. на C ↓ | Корректные отказы ↑ | Точн. A ↑ | Точн. B ↑ | Избыт. отказы ↓ |
+|---|---:|---:|---:|---:|---:|
+| Qwen2-Audio · plain | **92.5%** | 2.5% | 23% | 27% | 7% |
+| Qwen2-Audio · S1 IDK | 17.5% | 82.5% | 13% | 7% | **62%** |
+| Cascade · plain | 62.5% | 27.5% | 87% | 90% | 0% |
+| Cascade · S1 IDK | **2.5%** | **97.5%** | 87% | 83% | 7% |
+
+Одна инструкция «скажи, если в аудио этого нет» снижает галлюцинации 92.5%→17.5% у Speech LLM, но ценой 62% избыточных отказов; каскад берёт ту же инструкцию почти бесплатно — узкое место в эпистемическом рассуждении, а не в слухе. Детали, цитаты и происхождение оценок: [results/pilot_summary.md](results/pilot_summary.md).
+
+## Правила работы
 - Каждое решение → [docs/decisions.md](docs/decisions.md); изменения схем данных объявляются там в тот же день. Канонические схемы: [docs/ru/PLAN.md §2](docs/ru/PLAN.md).
 - Каждый документ существует на двух языках ([docs/ru](docs/ru/) ↔ [docs/en](docs/en/)), с перекрёстными ссылками. У каждого факта один дом; остальное — ссылки.
