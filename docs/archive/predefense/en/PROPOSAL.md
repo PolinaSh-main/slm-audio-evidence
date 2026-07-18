@@ -3,13 +3,13 @@
 **SMILES 2026 · Curator: Assel Yermekova · Core team of 3 (a 4th member may join)**
 **Pre-defense deliverables (July 12, 23:00 UTC+3):** GitHub repo with current code + short plan presentation.
 **This document = the science:** positioning, hypotheses, resources, dataset & experiment design, what we claim at each scope tier.
-**Execution** (roles, schedule, tiers mechanics, coordination) → [PLAN.md](PLAN.md) · **per-member instructions** → [roles/en/](ROLE_M1.md) · **all terms explained** → [GLOSSARY.md](GLOSSARY.md) · **document map** → [README.md](../../README.md) · Русская версия: [PROPOSAL_RU.md](../ru/PROPOSAL.md).
+**Execution** (roles, schedule, tiers mechanics, coordination) → [PLAN.md](PLAN.md) · **per-member instructions** → [roles/en/](ROLE_M1.md) · **all terms explained** → [GLOSSARY.md](../../../en/GLOSSARY.md) · **document map** → [README.md](../../../../README.md) · Русская версия: [PROPOSAL_RU.md](../ru/PROPOSAL.md).
 
 ---
 
 ## 1. Pitch (one paragraph)
 
-Speech LLMs — models that take an audio clip plus a text question and answer in text (see [GLOSSARY.md](GLOSSARY.md)) — answer spoken questions fluently even when the audio contains **no evidence** for the answer — they hallucinate instead of saying *"the audio does not provide that information."* We build a controlled evaluation set of audio–question pairs across three epistemic levels (**stated / inferable / absent**), measure how modern Speech LLMs behave on it, and compare **training-free inference-time strategies** (uncertainty-aware prompting, explicit abstain option, self-verification, self-consistency, verbalized confidence) that trade hallucination against over-refusal. Output: a benchmark + a systematic comparison + practical recommendations for reliable speech assistants.
+Speech LLMs — models that take an audio clip plus a text question and answer in text (see [GLOSSARY.md](../../../en/GLOSSARY.md)) — answer spoken questions fluently even when the audio contains **no evidence** for the answer — they hallucinate instead of saying *"the audio does not provide that information."* We build a controlled evaluation set of audio–question pairs across three epistemic levels (**stated / inferable / absent**), measure how modern Speech LLMs behave on it, and compare **training-free inference-time strategies** (uncertainty-aware prompting, explicit abstain option, self-verification, self-consistency, verbalized confidence) that trade hallucination against over-refusal. Output: a benchmark + a systematic comparison + practical recommendations for reliable speech assistants.
 
 ---
 
