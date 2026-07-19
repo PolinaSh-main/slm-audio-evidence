@@ -9,7 +9,7 @@
 ## Stage A (Jul 21–29)
 
 1. **Judge rework (Mon Jul 21)** — per M1's instructions: resubmit the judge package with clean commit authorship and test the additional judge models. Keep the audit table (model × agreement vs the 93 golden B grades) — it becomes a paper table. *Done when:* PR open, audit table in the PR description.
-2. **Judge A1 outputs (Jul 22–24).** M2 hands you 4 runs on the AQUA subset. Grade with the best judge; spot-check ~20 items by hand. If AQUA stays MCQ (M1's Decision 1), grading is exact-match — then your job is just the free-form part, if any. *Done when:* `responses_judged.jsonl` for all A1 runs.
+2. **Judge the scale-set outputs (Jul 22–24).** M2 hands you 4 runs on the scale set (~400 native SQuAD 2.0 questions, free-form — same pipeline as the pilot: rules → fuzzy for A → judge). Grade with the best judge; spot-check ~20 items by hand. *Done when:* `responses_judged.jsonl` for all scale-set runs.
 3. **Soft targets for A2 (Jul 23–24, with M2).** M2 samples k≈10 answers per item; you grade them (rules classifier + judge) → per-item fraction hallucinated. This is the probe's training signal — quality here decides A2. *Done when:* soft-label file per item delivered to M2.
 4. **Entropy baseline (Jul 24–27).** From the same k samples compute the output-uncertainty baseline (answer-disagreement / entropy, as in paper 25). Report its AUROC the same way as the probes — the paper's claim "pre-generation beats output-level" rests on this comparison being fair.
 5. **Probes with M1 (Jul 25–29).** M1 trains the probes (runs — M2); you are the second pair of eyes on evaluation and own the cross-validation protocol (no leakage: same passage never in train and test).

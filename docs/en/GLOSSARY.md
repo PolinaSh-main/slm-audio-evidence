@@ -91,6 +91,7 @@
 | Term | Meaning |
 |---|---|
 | SQuAD / SQuAD 2.0 | Classic text QA dataset; 2.0 adds deliberately unanswerable questions; Spoken-SQuAD = its audio version (passages read by TTS) |
+| NMSQA | Another spoken version of SQuAD (for textless spoken QA); its *test* split is read aloud by 60 human speakers — the source of our natural-speech slice |
 | LibriSpeech | 1000 hours of audiobook speech with transcripts — natural (non-TTS) audio |
 | Hugging Face (HF) | Public hub hosting models and datasets; `transformers` / `datasets` are its Python libraries |
 | JSONL | A text file where every line is one JSON record |
