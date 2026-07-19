@@ -13,11 +13,11 @@ Roles per [docs/en/ROLE files](../docs/en/ROLE_M1.md): **M1** = lead/decisions, 
 | 26 | **LISTEN — "what does not hear"** (Kuan & Lee, 2505.14518, Interspeech 2025) | *Training-based* hallucination mitigation for audio LLMs — contrast to our training-free approach | M3 |
 | 27 | **BALSa** (2505.20166) | Same lab: audio-language alignment with synthetic negatives. Note: the mentor referred to 26 and 27 together as "BALSa" — they are two distinct papers | M3 |
 
-## Block 1 — Closest prior work (01–05) · 01 is everyone's second read (AQUA-Bench = our A1 validation target)
+## Block 1 — Closest prior work (01–05) · 01 is everyone's second read (closest benchmark; positioning only — NOT our validation set, see decisions 2026-07-19)
 
 | # | Paper | Why read it | Deep read |
 |---|---|---|---|
-| 01 | **AQUA-Bench** (Kuan & Lee, 2026) | The closest existing work — unanswerable audio QA (MCQ). Curators may ask "how are you different?" Our answer: speech content, free-form answers, mitigation comparison, epistemic gradient | **All** |
+| 01 | **AQUA-Bench** (Kuan & Lee, 2026) | The closest existing work — unanswerable audio QA (MCQ). Verified 2026-07-19: sound events / vocal non-speech / instruments only, **no speech content** — so it is our positioning contrast, not our validation set. Our answer to "how are you different?": speech content, free-form answers, mitigation comparison, epistemic gradient | **All** |
 | 02 | **Towards Reliable LALM** (Ma et al., 2025) | Training-free IDK-prompting + the RGI metric we adopt | **All**, esp. M3/M4 |
 | 03 | HalluAudio (2026) | 5K-item LALM hallucination benchmark; protocol ideas (refusal rate, yes/no bias) | M3 |
 | 04 | LALM object hallucination (2024) | Discriminative-question probing design | M2 |

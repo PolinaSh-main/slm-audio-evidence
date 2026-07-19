@@ -14,7 +14,7 @@ For each paper add to related_work.md **3–5 plain bullets**: (1) what task, (2
 
 | # | Paper | Why you're reading it |
 |---|---|---|
-| 01 | AQUA-Bench | closest benchmark; we validate on it (A1) |
+| 01 | AQUA-Bench | closest benchmark — the key positioning contrast (sound events, MCQ; we: speech content, free-form) |
 | 02 | Towards Reliable LALM | IDK-prompting + RGI metric — our S1's lineage |
 | 03 | HalluAudio | another hallucination benchmark — one Related Work paragraph |
 | 26 | LISTEN ("what does not hear") | *training-based* mitigation — our contrast: we are training-free |
