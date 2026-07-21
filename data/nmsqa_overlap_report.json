@@ -1,0 +1,15 @@
+{
+  "pool": {
+    "data_csv_contexts": 1033,
+    "matched_squad2_contexts": 608,
+    "A": 2984,
+    "C": 2967
+  },
+  "natural_nmsqa_slice": {
+    "contexts": 26,
+    "audio_files": 27,
+    "speakers": 24,
+    "A": 151,
+    "C": 126
+  }
+}

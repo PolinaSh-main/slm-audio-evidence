@@ -78,6 +78,21 @@ python data/setup_dataset.py --match-transcripts
 python data/setup_dataset.py --build-passages
 ```
 
+Run the NMSQA natural-audio overlap check for the SQuAD 2.0 scale set:
+
+```bash
+python data/explore_nmsqa_overlap.py
+```
+
+The script downloads and caches NMSQA test metadata plus SQuAD 2.0 dev under
+`data/raw/nmsqa_overlap/`, joins their normalized contexts with
+`data/generation/data.csv`, and writes the short result to
+`data/nmsqa_overlap_report.json`. To refresh the downloaded metadata:
+
+```bash
+python data/explore_nmsqa_overlap.py --force-download
+```
+
 `data.csv` is not the final selection. Manually choose the final 40 passages from this pool and save them as `data/generation/passages.csv` after checking audio quality, transcript quality, duration, diversity, and fact count.
 
 ## Question generation
