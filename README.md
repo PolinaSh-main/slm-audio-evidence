@@ -1,15 +1,15 @@
 # slm-audio-evidence — Can Speech LLMs Recognize When Audio Evidence Is Insufficient?
 
-**SMILES 2026 · Curator: Assel Yermekova · Team: M1 (lead), M2, M3 (+ optional M4)**
-**Pre-defense: this repo + presentation by July 12, 23:00 UTC+3.** Русская версия: [README_RU.md](README_RU.md).
+**SMILES 2026 · Curator: Assel Yermekova · Team: M1 (lead), M2, M3, M4**
+**Now: paper phase — submission via OpenReview by Sun Aug 2, 21:00 MSK** (pre-defense of Jul 12 passed; pilot frozen). Русская версия: [README_RU.md](README_RU.md).
 
 ## The project in 5 bullets
 
 - A **Speech LLM** takes a sound recording + a written question and answers in text.
 - Problem: when the recording does not contain the answer, models invent one. Audio: "I like apples." Question: "What color was the jacket?" Model: "Blue." — a **hallucination**.
 - We build a test set with three question kinds: **A** answer stated · **B** answer inferable · **C** not in the audio at all (the model should say so).
-- We measure how often models hallucinate on C and compare prompt-level fixes against the cost of refusing too much.
-- Scope is tiered (MINIMUM / MEDIUM / MAXIMUM) with a go/no-go checkpoint on July 10 evening.
+- We measure how often models hallucinate on C and compare fixes against the cost of refusing too much. Pilot verdict: the bottleneck is *epistemic reasoning, not hearing* (see the table below).
+- Paper phase now: scale validation on native SQuAD 2.0 unanswerable questions (Spoken-SQuAD + NMSQA natural-speech audio) + a novel mitigation — *pre-generation probing* transferred to Qwen2-Audio ([docs/en/PLAN.md](docs/en/PLAN.md)); plan-minimum guarded by a Jul 24 checkpoint.
 
 ## Where to look — 3 files per person
 
@@ -18,24 +18,26 @@ All knowledge lives in **[docs/en/](docs/en/)** (English) and **[docs/ru/](docs/
 | File | What it is | Who needs it |
 |---|---|---|
 | [GLOSSARY.md](docs/en/GLOSSARY.md) | Every term + "what is a Speech LLM" intro | everyone, once (5 min) |
-| [ROLE_M1](docs/en/ROLE_M1.md) / [ROLE_M2](docs/en/ROLE_M2.md) / [ROLE_M3](docs/en/ROLE_M3.md) | **Your tasks, step by step** — self-contained | you, daily |
-| [PROPOSAL.md](docs/en/PROPOSAL.md) | Vision & science: hypotheses, literature, experiments, per-tier claims | lead, curator, Q&A prep |
-| [PLAN.md](docs/en/PLAN.md) | Execution: schedule, tiers & switching, data contracts, checklist | lead, checkpoints |
+| [ROLE_M1](docs/en/ROLE_M1.md) / [ROLE_M2](docs/en/ROLE_M2.md) / [ROLE_M3](docs/en/ROLE_M3.md) / [ROLE_M4](docs/en/ROLE_M4.md) | **Your tasks, step by step** — self-contained | you, daily |
+| [PLAN.md](docs/en/PLAN.md) | Stages A/B, week grid, reading plan, plan-minimum, data contracts (§2) | everyone; lead at checkpoints |
+| [PAPER_OUTLINE.md](docs/en/PAPER_OUTLINE.md) | Paper skeleton: sections, owners, school requirements | everyone in Stage B |
 
-Shared working logs: [docs/decisions.md](docs/decisions.md) (every decision, same-day schema announcements) · [docs/related_work.md](docs/related_work.md) (paper notes, split M1/M2/M3). Papers: [papers/README.md](papers/README.md) (reading guide; PDFs local-only, gitignored).
+Shared working logs: [docs/decisions.md](docs/decisions.md) (every decision, same-day schema announcements) · [docs/related_work.md](docs/related_work.md) (paper notes — the Related Work section is built from them; M3 leads). Papers: [papers/README.md](papers/README.md) (reading guide; PDFs local-only, gitignored). Superseded pre-defense docs: [docs/archive/predefense/](docs/archive/predefense/en/PLAN.md).
 
 ## Repository layout
 
 ```
 README(_RU).md      ← you are here
 docs/en/ · docs/ru/ ← all project docs, one folder per language (7 files each)
-docs/               ← shared logs: decisions.md, related_work.md, data_card.md (soon)
+docs/archive/       ← superseded pre-defense docs (PLAN, PROPOSAL, ROLE_M1–M3)
+docs/               ← shared logs: decisions.md, related_work.md, data_card.md
 papers/             ← reading guide (+ local PDFs, not committed)
+paper/              ← Zapiski POMI LaTeX template — the paper itself (Overleaf)
 data/manifests/     ← eval-set JSONL (pilot.jsonl — frozen 2026-07-12: 100 items)
-data/generation/    ← passage selection, A-questions, TTS fallback (M2 — already started)
-src/models/         ← wrappers: base.py, qwen2_audio.py, cascade.py (M1)
-src/prompts/        ← strategy files: plain.txt, s1_idk.txt, … (M1)
-src/                ← inference.py (M1) · judge.py, metrics.py (M3)
+data/generation/    ← passage selection, question generation, TTS fallback
+src/models/         ← wrappers: base.py, qwen2_audio.py, cascade.py
+src/prompts/        ← strategy files: plain.txt, s1_idk.txt, …
+src/                ← inference.py · judge.py, metrics.py, run_eval.py
 configs/ notebooks/ results/
 ```
 
@@ -126,7 +128,7 @@ The output is WAV, 16 kHz, mono, 16-bit.
 
 ```bash
 pip install -r requirements.txt
-# inference (GPU; or open notebooks/kaggle_run.ipynb on Kaggle):
+# inference (GPU; notebooks/colab_run.ipynb runs on DataSphere/Colab, notebooks/kaggle_run.ipynb is the Kaggle fallback):
 python -m src.inference --model qwen2audio --strategy plain --data data/manifests/pilot.jsonl --out results/
 # evaluation:
 python -m src.run_eval --responses results/<run_id>/responses.jsonl

@@ -1,15 +1,15 @@
 # slm-audio-evidence — Могут ли Speech LLM распознавать недостаточность аудио-доказательств?
 
-**SMILES 2026 · Куратор: Асель Ермекова · Команда: M1 (лид), M2, M3 (+ опциональный M4)**
-**Предзащита: этот репозиторий + презентация до 12 июля, 23:00 UTC+3.** English version: [README.md](README.md).
+**SMILES 2026 · Куратор: Асель Ермекова · Команда: M1 (лид), M2, M3, M4**
+**Сейчас: фаза статьи — подача через OpenReview до вс 2 августа, 21:00 МСК** (предзащита 12.07 пройдена; пилот заморожен). English version: [README.md](README.md).
 
 ## Проект в 5 пунктах
 
 - **Speech LLM** принимает звукозапись + письменный вопрос и отвечает текстом.
 - Проблема: когда в записи нет ответа, модели его выдумывают. Аудио: «я люблю яблоки». Вопрос: «какого цвета была куртка?» Модель: «синяя» — это **галлюцинация**.
 - Мы строим тестовый набор с тремя видами вопросов: **A** ответ произнесён · **B** ответ выводится · **C** ответа в аудио нет вообще (модель должна так и сказать).
-- Мы измеряем, как часто модели галлюцинируют на C, и сравниваем промпт-исправления против цены избыточных отказов.
-- Объём проекта трёхуровневый (МИНИМУМ / СРЕДНИЙ / МАКСИМУМ) с контрольной точкой вечером 10 июля.
+- Мы измеряем, как часто модели галлюцинируют на C, и сравниваем исправления против цены избыточных отказов. Вердикт пилота: узкое место — *эпистемическое рассуждение, а не слух* (таблица ниже).
+- Сейчас фаза статьи: валидация масштабом на нативных безответных вопросах SQuAD 2.0 (аудио Spoken-SQuAD + натуральная речь NMSQA) + новая митигация — перенос *pre-generation пробинга* на Qwen2-Audio ([docs/ru/PLAN.md](docs/ru/PLAN.md)); план-минимум защищён чекпоинтом 24.07.
 
 ## Где что искать — 3 файла на человека
 
@@ -18,24 +18,26 @@
 | Файл | Что это | Кому нужен |
 |---|---|---|
 | [GLOSSARY.md](docs/ru/GLOSSARY.md) | Все термины + введение «что такое Speech LLM» | всем, один раз (5 минут) |
-| [ROLE_M1](docs/ru/ROLE_M1.md) / [ROLE_M2](docs/ru/ROLE_M2.md) / [ROLE_M3](docs/ru/ROLE_M3.md) | **Твои задачи по шагам** — самодостаточные | тебе, ежедневно |
-| [PROPOSAL.md](docs/ru/PROPOSAL.md) | Видение и наука: гипотезы, литература, эксперименты, утверждения по уровням | лиду, куратору, подготовка к Q&A |
-| [PLAN.md](docs/ru/PLAN.md) | Исполнение: расписание, уровни и переключение, контракты данных, чек-лист | лиду, контрольные точки |
+| [ROLE_M1](docs/ru/ROLE_M1.md) / [ROLE_M2](docs/ru/ROLE_M2.md) / [ROLE_M3](docs/ru/ROLE_M3.md) / [ROLE_M4](docs/ru/ROLE_M4.md) | **Твои задачи по шагам** — самодостаточные | тебе, ежедневно |
+| [PLAN.md](docs/ru/PLAN.md) | Стадии A/B, сетка недели, план чтения, план-минимум, контракты данных (§2) | всем; лиду на чекпоинтах |
+| [PAPER_OUTLINE.md](docs/ru/PAPER_OUTLINE.md) | Скелет статьи: секции, владельцы, требования школы | всем в стадии B |
 
-Общие рабочие журналы: [docs/decisions.md](docs/decisions.md) (каждое решение; изменения схем объявляются в тот же день) · [docs/related_work.md](docs/related_work.md) (заметки по статьям, деление M1/M2/M3). Статьи: [papers/README.md](papers/README.md) (гид по чтению; PDF только локально, в .gitignore).
+Общие рабочие журналы: [docs/decisions.md](docs/decisions.md) (каждое решение; изменения схем объявляются в тот же день) · [docs/related_work.md](docs/related_work.md) (заметки по статьям — из них собирается секция Related Work; ведёт M3). Статьи: [papers/README.md](papers/README.md) (гид по чтению; PDF только локально, в .gitignore). Устаревшие доки предзащиты: [docs/archive/predefense/](docs/archive/predefense/ru/PLAN.md).
 
 ## Структура репозитория
 
 ```
 README(_RU).md      ← ты здесь
 docs/en/ · docs/ru/ ← все документы проекта, папка на язык (по 7 файлов)
-docs/               ← общие журналы: decisions.md, related_work.md, data_card.md (скоро)
+docs/archive/       ← устаревшие доки предзащиты (PLAN, PROPOSAL, ROLE_M1–M3)
+docs/               ← общие журналы: decisions.md, related_work.md, data_card.md
 papers/             ← гид по чтению (+ локальные PDF, не коммитятся)
+paper/              ← LaTeX-шаблон «Записок ПОМИ» — сама статья (Overleaf)
 data/manifests/     ← JSONL оценочного набора (pilot.jsonl — заморожен 12.07.2026: 100 элементов)
-data/generation/    ← отбор пассажей, A-вопросы, TTS-подстраховка (M2 — уже начато)
-src/models/         ← обёртки: base.py, qwen2_audio.py, cascade.py (M1)
-src/prompts/        ← файлы стратегий: plain.txt, s1_idk.txt, … (M1)
-src/                ← inference.py (M1) · judge.py, metrics.py (M3)
+data/generation/    ← отбор пассажей, генерация вопросов, TTS-подстраховка
+src/models/         ← обёртки: base.py, qwen2_audio.py, cascade.py
+src/prompts/        ← файлы стратегий: plain.txt, s1_idk.txt, …
+src/                ← inference.py · judge.py, metrics.py, run_eval.py
 configs/ notebooks/ results/
 ```
 
@@ -126,7 +128,7 @@ python data/generation/tts_fallback.py --text "Your passage text here" --out dat
 
 ```bash
 pip install -r requirements.txt
-# инференс (нужен GPU; либо открой notebooks/kaggle_run.ipynb в Kaggle):
+# инференс (нужен GPU; ноутбук notebooks/colab_run.ipynb работает на DataSphere/Colab, notebooks/kaggle_run.ipynb — запасной вариант на Kaggle):
 python -m src.inference --model qwen2audio --strategy plain --data data/manifests/pilot.jsonl --out results/
 # оценка:
 python -m src.run_eval --responses results/<run_id>/responses.jsonl

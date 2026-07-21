@@ -1,13 +1,23 @@
 # Reading List & Assignments
 
-23 papers, all verified and downloaded. File prefix = reading priority within its block.
-Roles per [PROPOSAL.md](../docs/en/PROPOSAL.md): **M1** = Lead/infra + methods, **M2** = Data, **M3** = Evaluation, **M4** = optional flex member (takes extra strategies & lit consolidation if they join).
+27 papers, all verified and downloaded (PDFs local-only, gitignored). File prefix = reading priority within its block.
+Roles per [docs/en/ROLE files](../docs/en/ROLE_M1.md): **M1** = lead/decisions, **M2** = experiments, **M3** = literature & text, **M4** = judge & baselines.
+**The reading schedule for the paper phase lives in [PLAN.md §6](../docs/en/PLAN.md) — canonical.** Blocks below = the catalog.
 
-## Block 1 — Closest prior work (01–05) · **EVERYONE reads 01–02 before the pre-defense**
+## Block 0 — Paper-phase core (24–27) · **read FIRST — 24 and 01 by everyone, by Tue Jul 21**
 
 | # | Paper | Why read it | Deep read |
 |---|---|---|---|
-| 01 | **AQUA-Bench** (Kuan & Lee, 2026) | The closest existing work — unanswerable audio QA (MCQ). Curators may ask "how are you different?" Our answer: speech content, free-form answers, mitigation comparison, epistemic gradient | **All** |
+| 24 | **Pre-Generation Hallucination Detection via Soft-Target Attention Probing** (Miftakhova & Zaytsev, 2606.21917) | **The method we transfer** (Stage A2): probe prompt hidden states before generation; soft targets from k sampled answers; AUROC | **All**; deep: M2 |
+| 25 | **Walking Through Uncertainty** (2604.25591) | Neighbor NTU-lab work: *output-level* uncertainty for LALMs → our entropy baseline + the paper's key positioning contrast (they post-hoc, we pre-generation) | M4, M3 |
+| 26 | **LISTEN — "what does not hear"** (Kuan & Lee, 2505.14518, Interspeech 2025) | *Training-based* hallucination mitigation for audio LLMs — contrast to our training-free approach | M3 |
+| 27 | **BALSa** (2505.20166) | Same lab: audio-language alignment with synthetic negatives. Note: the mentor referred to 26 and 27 together as "BALSa" — they are two distinct papers | M3 |
+
+## Block 1 — Closest prior work (01–05) · 01 is everyone's second read (closest benchmark; positioning only — NOT our validation set, see decisions 2026-07-19)
+
+| # | Paper | Why read it | Deep read |
+|---|---|---|---|
+| 01 | **AQUA-Bench** (Kuan & Lee, 2026) | The closest existing work — unanswerable audio QA (MCQ). Verified 2026-07-19: sound events / vocal non-speech / instruments only, **no speech content** — so it is our positioning contrast, not our validation set. Our answer to "how are you different?": speech content, free-form answers, mitigation comparison, epistemic gradient | **All** |
 | 02 | **Towards Reliable LALM** (Ma et al., 2025) | Training-free IDK-prompting + the RGI metric we adopt | **All**, esp. M3/M4 |
 | 03 | HalluAudio (2026) | 5K-item LALM hallucination benchmark; protocol ideas (refusal rate, yes/no bias) | M3 |
 | 04 | LALM object hallucination (2024) | Discriminative-question probing design | M2 |
@@ -51,13 +61,19 @@ Roles per [PROPOSAL.md](../docs/en/PROPOSAL.md): **M1** = Lead/infra + methods, 
 | 22 | SAKURA (2025) | Multi-hop speech reasoning — category-B design reference (M2) |
 | 23 | Spoken SQuAD (2018) | Our primary audio corpus — how it was built, its ASR error rates |
 
-## Suggested schedule (work starts Jul 8)
+## Reading schedule — paper phase (starts Jul 18; the pre-defense schedule was never executed and is superseded)
 
-- **By the Jul 8 evening sync:** everyone → 01, 02 (abstract + method + results tables minimum).
-- **By Jul 9:** M1 → 16, 19 + 13–15 (feeds harness W1.2 and prompt library W1.3); M2 → 04, 06, 22, 23 (feeds question generation W2.2); M3 → 03, 21 + metric sections of 02, 09 (feeds metrics.py W3.2).
-- **By Jul 10, split of Block 2:** M1 → 07, 08 (positioning); M3 → 09, 10 (abstention metrics).
-- **M4 (only if they join):** 05 + the rest of Blocks 2–3 — feeds the flex workstream W4.
-- **Rolling:** the rest as needed; each reader drops 3–5 bullet takeaways per paper into `docs/related_work.md`.
+Canonical version with focus notes: [PLAN.md §6](../docs/en/PLAN.md). Per paper: 3–5 takeaway bullets → [docs/related_work.md](../docs/related_work.md) (+ save the BibTeX entry right away).
+
+| Who | Papers | By |
+|---|---|---|
+| **Everyone** | 24, 01 | Tue Jul 21 |
+| M2 | 24 (deep) + 16 | Wed Jul 22 |
+| M4 | 25 + 02 | Wed Jul 22 |
+| M3 | conveyor 01 → 02 → 03 → 26 → 27 → 25 (+ skim 09) | Jul 19–25, ~1/day |
+| M1 | 24 + 01 (decision level), skim 25 | Wed Jul 22 |
+
+Blocks 2–5 below are the reference catalog — dip in when a section of the paper needs them (11–15 for uncertainty baselines, 06/23 for data lineage, 16–19 for model details).
 
 ## Non-paper sources (bookmarks)
 

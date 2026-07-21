@@ -1,7 +1,7 @@
 # Related Work — team notes
 
-3–5 plain bullets per paper (takeaways, not summaries). Paper numbers refer to [papers/README.md](../papers/README.md); full citations in [PROPOSAL.md §9](en/PROPOSAL.md).
-Split (due Jul 10, PLAN.md §3): **M1** — positioning & models (01, 02, 16, 19) · **M2** — data & benchmarks (04, 06, 22, 23) · **M3** — metrics & uncertainty (03, 21, 09, 10 + metric sections of 02).
+3–5 plain bullets per paper (takeaways, not summaries). Paper numbers refer to [papers/README.md](../papers/README.md); BibTeX entries are collected here too (M3, during reading).
+**Paper-phase split (due Jul 25 — [PLAN §6](en/PLAN.md)):** M3 conveyor — 01, 02, 03, 26, 27, 25 (+ skim 09) · M2 — 24, 16 · M4 — 25, 02 · M1 — 24, 01. These bullets become the paper's Related Work section (owner M3).
 
 ## Positioning & closest work (M1)
 

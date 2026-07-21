@@ -44,7 +44,7 @@
 | Hedge | A vague answer that neither commits nor clearly refuses |
 | Epistemic awareness | The ability to tell apart: stated in the audio / inferable from it / impossible to determine (our categories A/B/C) |
 
-### Methods — all *inference-time and training-free*: applied via prompts and sampling when running the model; no weights changed
+### Methods — the Speech LLM itself always stays frozen: prompts, sampling, and (phase 2) small external probes; no LLM weights changed
 
 | Term | Meaning |
 |---|---|
@@ -61,6 +61,13 @@
 | LLM-as-judge | A separate LLM grades free-form answers against the gold (reference) answer using a fixed rubric |
 | Rubric | The fixed grading instruction, same for every answer, stored in a versioned file |
 | MCQ | Multiple-choice question format; we deliberately use free-form answers instead |
+| Hidden states / representations | The model's internal number vectors for each token at each layer; readable without changing the model |
+| Probing / linear probe | A tiny classifier (logistic regression) trained on frozen hidden states to predict something — here: "will the answer be a hallucination?" |
+| Attention probe | A probe with a small learned attention layer that reads *all* prompt-token representations instead of one vector (method of paper 24) |
+| Soft targets | Probe training labels built by sampling k answers per item and grading them: the *fraction* hallucinated (0…1) instead of a hard 0/1 |
+| Pre-generation detection | Predicting a coming hallucination from the model's internal state *before* it writes the answer; contrast: output-level methods look at generated answers |
+| Probe→abstain (our mitigation) | If the probe's hallucination score is above a threshold, output "I don't know" instead of the model's answer |
+| Entropy baseline | Output-level detector we compare against: sample k answers and measure their disagreement; high disagreement signals guessing |
 
 ### Metrics
 
@@ -77,12 +84,14 @@
 | Wilson confidence interval (CI) | The honest range around a rate given the sample size; wide with few items — we show it anyway |
 | Inter-annotator agreement | How often two human labelers assign the same label — a data-quality check |
 | AUROC | Area under the ROC curve — how well a signal separates two classes (used for detectors) |
+| Operating point | One chosen trade-off on a curve — e.g., the threshold giving X% hallucination at Y% over-refusal |
 
 ### Data & engineering
 
 | Term | Meaning |
 |---|---|
 | SQuAD / SQuAD 2.0 | Classic text QA dataset; 2.0 adds deliberately unanswerable questions; Spoken-SQuAD = its audio version (passages read by TTS) |
+| NMSQA | Another spoken version of SQuAD (for textless spoken QA); its *test* split is read aloud by 60 human speakers — the source of our natural-speech slice |
 | LibriSpeech | 1000 hours of audiobook speech with transcripts — natural (non-TTS) audio |
 | Hugging Face (HF) | Public hub hosting models and datasets; `transformers` / `datasets` are its Python libraries |
 | JSONL | A text file where every line is one JSON record |
