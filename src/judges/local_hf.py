@@ -5,17 +5,24 @@ from typing import Any
 
 import torch
 
-from .base import DEFAULT_PROMPT_NAME, LLMJudge
+from .base import DEFAULT_PROMPT_NAME, LLMJudge, _THINK_CLOSE_MARKERS
 
-_THINK_CLOSE = "</think>"
 _VERDICT_RE = re.compile(r"\b(CORRECT|INCORRECT|ABSTAINED)\b", re.IGNORECASE)
 
 
 class _StopOnVerdict:
-    """Stops generation as soon as a verdict word appears after </think>, instead of always
-    running to max_new_tokens. Only looks past </think> -- the model may mention a verdict word
-    while still reasoning (e.g. weighing "is this CORRECT or not"), and stopping on that would
-    cut off its actual conclusion. Before </think> closes, keeps generating regardless.
+    """Stops generation as soon as a verdict word appears after the reasoning block closes,
+    instead of always running to max_new_tokens. Only looks past the closing marker -- the
+    model may mention a verdict word while still reasoning (e.g. weighing "is this CORRECT or
+    not"), and stopping on that would cut off its actual conclusion. Before the block closes,
+    keeps generating regardless.
+
+    2026-07-22: was hardcoded to "</think>" (Qwen3's convention) -- Ministral-3-8B-Reasoning
+    uses "[THINK]...[/THINK]" instead (confirmed via its real chat_template.jinja on the Hub),
+    so this never fired, generation always ran to the full max_new_tokens ceiling (~118s/item,
+    near-identical every time -- the tell), and parse_verdict (src/judges/base.py) scanned the
+    entire reasoning instead of just the final answer, causing near-universal UNPARSEABLE. Now
+    checks every known closing marker, not just Qwen's.
     """
 
     def __init__(self, tokenizer, prompt_len: int) -> None:
@@ -24,7 +31,11 @@ class _StopOnVerdict:
 
     def __call__(self, input_ids, scores, **kwargs) -> bool:
         text = self.tokenizer.decode(input_ids[0, self.prompt_len :], skip_special_tokens=True)
-        _, _, after_think = text.partition(_THINK_CLOSE)
+        after_think = ""
+        for marker in _THINK_CLOSE_MARKERS:
+            if marker in text:
+                after_think = text.rsplit(marker, 1)[-1]
+                break
         return bool(after_think) and bool(_VERDICT_RE.search(after_think))
 
 # Qwen3-8B (2025 generation) — swapped in 2026-07-15 to isolate the model variable from the

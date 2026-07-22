@@ -21,6 +21,14 @@ DEFAULT_PROMPT_NAME = "judge_v1.txt"
 
 _VERDICT_RE = re.compile(r"\b(CORRECT|INCORRECT|ABSTAINED)\b")
 
+# Closing marker for a model's reasoning/thinking block, checked in order -- only the text AFTER
+# whichever one actually appears should be scanned for a verdict (see parse_verdict below).
+# "</think>" is Qwen3's convention; "[/THINK]" is Mistral's own (confirmed 2026-07-22 by reading
+# mistralai/Ministral-3-8B-Reasoning-2512's actual chat_template.jinja on the Hub -- Mistral uses
+# bracket-style [THINK]...[/THINK], not the XML-style tag). Add future models' markers here
+# rather than guessing a generic one; each reasoning convention so far has been model-specific.
+_THINK_CLOSE_MARKERS = ("</think>", "[/THINK]")
+
 
 class Verdict(str, Enum):
     CORRECT = "CORRECT"
@@ -67,13 +75,18 @@ def parse_verdict(raw_output: str) -> Verdict:
     never get silently guessed. Models rarely reply with exactly one word despite the rubric
     asking for it, so this scans the whole reply and only accepts a single distinct verdict word.
 
-    If a <think>...</think> block is present (Qwen3-style reasoning), only the text after the
-    last </think> is scanned. Found 2026-07-15 (docs/decisions.md, fourth audit): reasoning
-    routinely name-checks multiple verdict words as hypotheses ("is this correct or incorrect?")
-    before settling on one, so scanning the whole reply made 60/93 real thinking-judge replies
-    look ambiguous even though every one of them gave a single clear answer after </think>.
+    If a reasoning/thinking block is present, only the text after its closing marker (see
+    _THINK_CLOSE_MARKERS) is scanned. Found 2026-07-15 (docs/decisions.md, fourth audit):
+    reasoning routinely name-checks multiple verdict words as hypotheses ("is this correct or
+    incorrect?") before settling on one, so scanning the whole reply made 60/93 real
+    thinking-judge replies look ambiguous even though every one of them gave a single clear
+    answer after the closing marker.
     """
-    text = raw_output.rsplit("</think>", 1)[-1] if "</think>" in raw_output else raw_output
+    text = raw_output
+    for marker in _THINK_CLOSE_MARKERS:
+        if marker in text:
+            text = text.rsplit(marker, 1)[-1]
+            break
     matches = {m.group(1) for m in _VERDICT_RE.finditer(text.upper())}
     if len(matches) == 1:
         return Verdict(matches.pop())
