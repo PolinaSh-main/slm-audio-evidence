@@ -70,15 +70,42 @@ class LocalHFJudge(LLMJudge):
             kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
         else:
             kwargs["torch_dtype"] = torch.float16
+
+        # mistral3 (Ministral-3's published checkpoints): transformers dropped
+        # Mistral3ForConditionalGeneration._checkpoint_conversion_mapping between 4.57.6 and the
+        # main/5.x line (confirmed by diffing modeling_mistral3.py across both) -- the checkpoint's
+        # real safetensors keys ("language_model.model.layers...", "language_model.lm_head...")
+        # no longer get auto-renamed to what the class expects ("model.language_model.layers...",
+        # top-level "lm_head..."). from_pretrained does NOT raise on this -- it silently loads
+        # with those layers randomly initialized (only visible via its own printed LOAD REPORT,
+        # every key MISSING) and would otherwise still "succeed" as far as this class is
+        # concerned. `key_mapping` is still an accepted from_pretrained kwarg (dict[str, str],
+        # regex -> replacement) on every transformers version -- passing the exact mapping the
+        # class used to apply automatically fixes this regardless of version. Harmless to pass
+        # for any other model_type; only mistral3 checkpoints will ever match these patterns.
+        # docs/decisions.md 2026-07-22 (verified against the real checkpoint index.json + a diff
+        # of modeling_mistral3.py, not guessed).
+        from transformers import AutoConfig
+
+        if getattr(AutoConfig.from_pretrained(model_id), "model_type", None) == "mistral3":
+            kwargs["key_mapping"] = {
+                "^language_model.model": "model.language_model",
+                "^vision_tower": "model.vision_tower",
+                "^multi_modal_projector": "model.multi_modal_projector",
+                "^language_model.lm_head": "lm_head",
+            }
+
         try:
             self.model = AutoModelForCausalLM.from_pretrained(model_id, **kwargs)
-        except ValueError:
+        except ValueError as exc:
+            if "Unrecognized configuration class" not in str(exc):
+                raise  # a real error (e.g. VRAM/device_map) -- retrying via a different Auto
+                # class would only fail again with the same message, masking the actual cause.
             # Some 2026-generation checkpoints (e.g. Ministral-3-8B's mistral3 architecture,
             # confirmed via HF's own auto-mapping: registered under image-text-to-text, not
-            # causal-LM, even for the text-only instruct/reasoning variants) raise "Unrecognized
-            # configuration class ... for this kind of AutoModel: AutoModelForCausalLM" -- not an
-            # OOM or a missing-package error, just the wrong Auto* class. Retry once before
-            # giving up; docs/decisions.md 2026-07-22.
+            # causal-LM, even for the text-only instruct/reasoning variants) raise this specific
+            # error -- not an OOM or a missing-package error, just the wrong Auto* class. Retry
+            # once before giving up; docs/decisions.md 2026-07-22.
             from transformers import AutoModelForImageTextToText
 
             self.model = AutoModelForImageTextToText.from_pretrained(model_id, **kwargs)
