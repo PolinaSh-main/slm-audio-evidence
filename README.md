@@ -9,7 +9,7 @@
 - Problem: when the recording does not contain the answer, models invent one. Audio: "I like apples." Question: "What color was the jacket?" Model: "Blue." — a **hallucination**.
 - We build a test set with three question kinds: **A** answer stated · **B** answer inferable · **C** not in the audio at all (the model should say so).
 - We measure how often models hallucinate on C and compare fixes against the cost of refusing too much. Pilot verdict: the bottleneck is *epistemic reasoning, not hearing* (see the table below).
-- Paper phase now: scale validation on native SQuAD 2.0 unanswerable questions (Spoken-SQuAD + NMSQA natural-speech audio) + a novel mitigation — *pre-generation probing* transferred to Qwen2-Audio ([docs/en/PLAN.md](docs/en/PLAN.md)); plan-minimum guarded by a Jul 24 checkpoint.
+- Paper phase now: scale validation on native SQuAD 2.0 unanswerable questions read by human speakers (NMSQA, 48 paragraphs / 40 speakers) + a novel mitigation — *pre-generation probing* transferred to Qwen2-Audio ([docs/en/PLAN.md](docs/en/PLAN.md)); plan-minimum guarded by a Jul 24 checkpoint.
 
 ## Where to look — 3 files per person
 
