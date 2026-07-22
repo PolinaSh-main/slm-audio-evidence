@@ -66,30 +66,29 @@ def _truncate(text: str, limit: int = 300) -> str:
     return text if len(text) <= limit else text[: limit - 1] + "…"
 
 
-def cmd_compare(args: argparse.Namespace) -> None:
+def compute_agreement(judged_glob: str, judge_subdir: str, manifest_path: str = "") -> dict:
     """Diff a fresh LLM-judge cache against the committed manual-M1 ground truth.
 
     No blind resampling: the human grades were frozen (2026-07-13, decisions.md)
     before any LLM verdict existed, so comparing against them directly cannot
-    bias the human side. Reads ground truth from --judged's responses_judged.jsonl
-    (judge == "manual-M1") and fresh verdicts from <run_dir>/<judge-subdir>/judge_cache.jsonl
-    — a SEPARATE directory from --judged on purpose, so this never depends on
-    (or risks) overwriting the committed manual grades.
+    bias the human side. Reads ground truth from responses_judged.jsonl matching
+    `judged_glob` (judge == "manual-M1") and fresh verdicts from
+    <run_dir>/<judge_subdir>/judge_cache.jsonl — a SEPARATE directory on purpose,
+    so this never depends on (or risks) overwriting the committed manual grades.
 
-    Every item where the LLM verdict and manual-M1 disagree is logged with BOTH
-    labels side by side (disagreements.jsonl, full data; a "## Disagreements"
-    section in the report, human-readable) so a mismatch can be inspected
-    without re-deriving which side said what.
+    Extracted out of cmd_compare so scripts/audit_multi_judge.py (many judge
+    configs at once, see docs/decisions.md 2026-07-21) can reuse the exact same
+    agreement logic instead of re-deriving it per model.
     """
     from src.judges.base import Verdict  # local import: keeps this script runnable without torch/transformers
 
-    manifest = {row["id"]: row for row in load_jsonl(Path(args.manifest))} if args.manifest else {}
+    manifest = {row["id"]: row for row in load_jsonl(Path(manifest_path))} if manifest_path else {}
 
     rows: list[dict] = []
-    for judged_path in sorted(glob.glob(args.judged, recursive=True)):
+    for judged_path in sorted(glob.glob(judged_glob, recursive=True)):
         judged_path = Path(judged_path)
         run_id = judged_path.parent.name
-        cache_path = judged_path.parent / args.judge_subdir / "judge_cache.jsonl"
+        cache_path = judged_path.parent / judge_subdir / "judge_cache.jsonl"
         cache = {row["id"]: row for row in load_jsonl(cache_path)}
         if not cache:
             continue
@@ -109,15 +108,6 @@ def cmd_compare(args: argparse.Namespace) -> None:
                 "judge_name": cached["judge_name"],
             })
 
-    if not rows:
-        raise SystemExit(
-            f"No overlap between manual-M1 ground truth ({args.judged}) and a fresh judge cache "
-            f"(<run_dir>/{args.judge_subdir}/judge_cache.jsonl). Run e.g.:\n"
-            f"  py -3 -m src.run_eval --judge local --responses results/<run_id>/responses.jsonl "
-            f"--out results/<run_id>/{args.judge_subdir}\n"
-            "for each run_id first — into a SEPARATE --out, never over the committed responses_judged.jsonl."
-        )
-
     agree = 0
     unparseable = 0
     confusion: Counter = Counter()
@@ -133,9 +123,34 @@ def cmd_compare(args: argparse.Namespace) -> None:
         else:
             disagreements.append(r)
 
-    scored = len(rows) - unparseable
+    return {
+        "rows": rows, "agree": agree, "scored": len(rows) - unparseable, "unparseable": unparseable,
+        "confusion": confusion, "disagreements": disagreements,
+        "judge_names": sorted({r["judge_name"] for r in rows}),
+    }
+
+
+def cmd_compare(args: argparse.Namespace) -> None:
+    """CLI wrapper around compute_agreement(): formats the result as a report and writes
+    disagreements.jsonl (full data) so a mismatch can be inspected without re-deriving
+    which side said what.
+    """
+    result = compute_agreement(args.judged, args.judge_subdir, args.manifest)
+    rows, disagreements = result["rows"], result["disagreements"]
+
+    if not rows:
+        raise SystemExit(
+            f"No overlap between manual-M1 ground truth ({args.judged}) and a fresh judge cache "
+            f"(<run_dir>/{args.judge_subdir}/judge_cache.jsonl). Run e.g.:\n"
+            f"  py -3 -m src.run_eval --judge local --responses results/<run_id>/responses.jsonl "
+            f"--out results/<run_id>/{args.judge_subdir}\n"
+            "for each run_id first — into a SEPARATE --out, never over the committed responses_judged.jsonl."
+        )
+
+    agree, scored, unparseable = result["agree"], result["scored"], result["unparseable"]
+    confusion = result["confusion"]
     pct = 100 * agree / scored if scored else 0.0
-    judge_names = {r["judge_name"] for r in rows}
+    judge_names = result["judge_names"]
 
     lines = [
         f"# LLM-judge vs manual-M1 ground truth ({len(rows)} overlapping items, {unparseable} UNPARSEABLE excluded)",

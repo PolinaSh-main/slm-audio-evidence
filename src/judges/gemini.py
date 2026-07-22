@@ -31,7 +31,14 @@ class GeminiJudge(LLMJudge):
             try:
                 resp = self._model.generate_content(prompt)
                 return (resp.text or "").strip()
-            except Exception as exc:  # network hiccup / rate limit — retry with backoff
+            except Exception as exc:  # network hiccup / rate limit / safety block — retry with backoff
                 last_error = exc
+                print(f"  [gemini attempt {attempt + 1}/{self.max_retries}] {exc!r}")
                 time.sleep(2**attempt)
-        raise RuntimeError(f"Gemini judge failed after {self.max_retries} attempts") from last_error
+        # repr(last_error), not just str() -- run_eval.py's except-block only prints str(exc) on
+        # the RuntimeError raised here, and `raise ... from last_error` alone is invisible there
+        # (it only shows up in a full traceback, which nothing prints). Folding the real cause
+        # into this message is what actually reaches the console log and judge_cache.jsonl.
+        raise RuntimeError(
+            f"Gemini judge failed after {self.max_retries} attempts: {last_error!r}"
+        ) from last_error

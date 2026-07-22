@@ -151,7 +151,10 @@ def run_evaluation(
                         print(f"{verdict_value} ({time.time() - t0:.1f}s)")
                     except Exception as exc:  # keep the run alive; item stays pending-manual
                         print(f"FAILED ({time.time() - t0:.1f}s): {exc}")
-                        verdict_value, raw_output = Verdict.UNPARSEABLE.value, ""
+                        # Prefixed and kept (not blanked) so a later look at judge_cache.jsonl --
+                        # or scripts/audit_multi_judge.py's thinking_traces/ dump, which prints
+                        # raw_output verbatim -- shows WHY this item crashed, not just that it did.
+                        verdict_value, raw_output = Verdict.UNPARSEABLE.value, f"[ERROR] {exc}"
                     cache_file.write(json.dumps({
                         "id": item_id, "judge_name": llm_judge.name, "prompt_version": llm_judge.prompt_version,
                         "verdict": verdict_value, "raw_output": raw_output,
