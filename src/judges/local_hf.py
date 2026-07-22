@@ -70,7 +70,18 @@ class LocalHFJudge(LLMJudge):
             kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
         else:
             kwargs["torch_dtype"] = torch.float16
-        self.model = AutoModelForCausalLM.from_pretrained(model_id, **kwargs)
+        try:
+            self.model = AutoModelForCausalLM.from_pretrained(model_id, **kwargs)
+        except ValueError:
+            # Some 2026-generation checkpoints (e.g. Ministral-3-8B's mistral3 architecture,
+            # confirmed via HF's own auto-mapping: registered under image-text-to-text, not
+            # causal-LM, even for the text-only instruct/reasoning variants) raise "Unrecognized
+            # configuration class ... for this kind of AutoModel: AutoModelForCausalLM" -- not an
+            # OOM or a missing-package error, just the wrong Auto* class. Retry once before
+            # giving up; docs/decisions.md 2026-07-22.
+            from transformers import AutoModelForImageTextToText
+
+            self.model = AutoModelForImageTextToText.from_pretrained(model_id, **kwargs)
 
     def set_thinking(self, enable_thinking: bool, max_new_tokens: int | None = None) -> None:
         """Swap generation mode on an already-loaded instance -- keeps enable_thinking,
