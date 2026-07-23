@@ -35,7 +35,7 @@ Adapt `notebooks/colab_run.ipynb` to DataSphere (M1 gives access). Smoke test: 5
 
 #### Step 2 · Apply the 30-second rule
 
-*Why:* Qwen2-Audio physically hears **only the first 30 seconds** of a recording (`chunk_length=30` in its preprocessor — anything beyond is silently discarded), while the cascade gets the full transcript via Whisper. Unless this is aligned, the two systems receive different inputs and the comparison between them is invalid.
+*Why:* Qwen2-Audio physically hears **only the first 30 seconds** of a recording (`chunk_length=30` in its preprocessor — anything beyond is silently discarded; and `truncation=False` won't help: the encoder has only 1500 positional embeddings = 30 s), while the cascade gets the full transcript via Whisper. Unless this is aligned, the two systems receive different inputs and the comparison between them is invalid.
 
 Look at the duration distribution from step 1 and pick one of two paths:
 
