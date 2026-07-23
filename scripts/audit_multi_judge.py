@@ -32,7 +32,7 @@ import glob
 import json
 from pathlib import Path
 
-from audit_judge import compute_agreement, load_jsonl, _truncate
+from audit_judge import AGREEMENT_GATE, compute_agreement, load_jsonl, _truncate
 
 
 def extract_thinking_traces(judge_subdir: str, judged_glob: str, out_dir: Path) -> int:
@@ -64,6 +64,12 @@ def build_candidate_report(judge_name: str, result: dict) -> str:
         "",
         f"Agreement: **{result['agree']}/{result['scored']} = {pct:.0f}%**",
         "",
+    ]
+    if pct / 100 < AGREEMENT_GATE:
+        lines.append(f"**BELOW {AGREEMENT_GATE*100:.0f}% GATE** — per ROLE_M3 Task 4, do not report this "
+                      "candidate's numbers; fall back to rules + manual grading and log this in docs/decisions.md.")
+        lines.append("")
+    lines += [
         f"## Disagreements ({len(result['disagreements'])} of {result['scored']})",
         "",
     ]
