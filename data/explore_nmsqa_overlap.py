@@ -36,6 +36,14 @@ DEFAULT_REPORT = Path("data/nmsqa_overlap_report.json")
 DEFAULT_DATA_CSV = Path("data/generation/data.csv")
 
 
+def merged_audio_name(audio_path: str) -> str:
+    stem = Path(audio_path).stem
+    prefix, separator, segment_number = stem.rpartition("-c-")
+    if not separator or not prefix or not segment_number.isdigit():
+        raise ValueError(f"Unexpected NMSQA context filename: {audio_path}")
+    return f"{prefix}-full.wav"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Count SQuAD 2.0 dev A/C questions covered by NMSQA test audio."
@@ -289,7 +297,10 @@ def analyze_durations(
     audio_dir: Path | None,
     histogram_path: Path,
 ) -> dict:
-    expected_names = {Path(path).name for path in expected_audio_paths}
+    expected_names = {
+        merged_audio_name(path)
+        for path in expected_audio_paths
+    }
     if audio_dir is None or not audio_dir.is_dir():
         return {
             "status": "audio_directory_missing",
@@ -391,16 +402,16 @@ def measure_duration_filtered_overlap(
         for item in duration_audit["short_files_under_10_seconds"]
     }
     kept_names = {
-        Path(path).name
+        merged_audio_name(path)
         for key in matched_keys
         for path in nmsqa_contexts[key]["audio_paths"]
-        if Path(path).name not in rejected_names
+        if merged_audio_name(path) not in rejected_names
     }
     kept_keys = {
         key
         for key in matched_keys
         if any(
-            Path(path).name in kept_names
+            merged_audio_name(path) in kept_names
             for path in nmsqa_contexts[key]["audio_paths"]
         )
     }

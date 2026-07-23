@@ -106,90 +106,37 @@
     "expected_files": 51,
     "found_files": 51,
     "distribution_seconds": {
-      "min": 5.108,
-      "p25": 9.938,
-      "median": 14.582,
-      "mean": 15.673,
-      "p75": 18.019,
-      "p90": 24.52,
-      "max": 47.554
+      "min": 24.985,
+      "p25": 49.18,
+      "median": 66.502,
+      "mean": 69.731,
+      "p75": 83.685,
+      "p90": 101.425,
+      "max": 156.038
     },
     "bins": {
-      "under_10": 13,
-      "10_to_20": 28,
-      "20_to_30": 7,
-      "30_to_45": 2,
-      "45_to_60": 1,
-      "60_plus": 0
+      "under_10": 0,
+      "10_to_20": 0,
+      "20_to_30": 1,
+      "30_to_45": 7,
+      "45_to_60": 12,
+      "60_plus": 31
     },
-    "short_files_under_10_seconds": [
-      {
-        "audio_file": "squad-5706094b52bb8914006897df-c-2.wav",
-        "duration_seconds": 7.152
-      },
-      {
-        "audio_file": "squad-57060f3e75f01819005e7923-c-2.wav",
-        "duration_seconds": 8.359
-      },
-      {
-        "audio_file": "squad-570d4e6cb3d812140066d66e-c-4.wav",
-        "duration_seconds": 6.595
-      },
-      {
-        "audio_file": "squad-571095a8a58dae1900cd6a76-c-0.wav",
-        "duration_seconds": 6.595
-      },
-      {
-        "audio_file": "squad-571097baa58dae1900cd6a9b-c-2.wav",
-        "duration_seconds": 9.102
-      },
-      {
-        "audio_file": "squad-571155ae2419e31400955595-c-5.wav",
-        "duration_seconds": 7.988
-      },
-      {
-        "audio_file": "squad-571cac5d5efbb31900334dd1-c-1.wav",
-        "duration_seconds": 9.752
-      },
-      {
-        "audio_file": "squad-5726a46cdd62a815002e8bd0-c-0.wav",
-        "duration_seconds": 9.288
-      },
-      {
-        "audio_file": "squad-5726db5add62a815002e92d4-c-0.wav",
-        "duration_seconds": 9.474
-      },
-      {
-        "audio_file": "squad-5727c94bff5b5019007d954e-c-1.wav",
-        "duration_seconds": 9.009
-      },
-      {
-        "audio_file": "squad-572815d9ff5b5019007d9cbe-c-4.wav",
-        "duration_seconds": 7.802
-      },
-      {
-        "audio_file": "squad-5729da0faf94a219006aa676-c-1.wav",
-        "duration_seconds": 5.108
-      },
-      {
-        "audio_file": "squad-572f58d9a23a5019007fc581-c-3.wav",
-        "duration_seconds": 7.523
-      }
-    ],
-    "kept_files": 38,
+    "short_files_under_10_seconds": [],
+    "kept_files": 51,
     "histogram": "data\\nmsqa_duration_histogram.png"
   },
   "duration_filtered_overlap": {
     "status": "complete",
     "minimum_duration_seconds": 10,
-    "kept_audio_files": 38,
-    "removed_audio_files": 13,
-    "kept_contexts": 36,
-    "removed_contexts": 12,
-    "kept_A": 199,
-    "kept_C": 180,
-    "removed_A": 68,
-    "removed_C": 55
+    "kept_audio_files": 51,
+    "removed_audio_files": 0,
+    "kept_contexts": 48,
+    "removed_contexts": 0,
+    "kept_A": 267,
+    "kept_C": 235,
+    "removed_A": 0,
+    "removed_C": 0
   },
   "natural_nmsqa_slice": {
     "contexts": 26,

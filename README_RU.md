@@ -164,6 +164,12 @@ python data/download_nmsqa_audio.py
 python data/select_nmsqa_squad_audio.py
 ```
 
+Объединить сегменты `c-0`, `c-1`, ... каждой записи по порядку:
+
+```bash
+python data/merge_nmsqa_squad_audio.py
+```
+
 Запустить аудит матчинга без фильтра `data.csv`: проверяются SQuAD train,
 fuzzy-совпадения, коллизии нормализации и длительности:
 

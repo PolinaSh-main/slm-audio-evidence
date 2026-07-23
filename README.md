@@ -164,6 +164,12 @@ to `data/raw/nmsqa_squad_test/`, and verify that every WAV opens:
 python data/select_nmsqa_squad_audio.py
 ```
 
+Merge each recording's `c-0`, `c-1`, ... segments in order:
+
+```bash
+python data/merge_nmsqa_squad_audio.py
+```
+
 Run the unfiltered matching, train/fuzzy, normalization-collision, and duration
 audit:
 
