@@ -177,6 +177,12 @@ audit:
 python data/explore_nmsqa_overlap.py --ignore-pool --audio-dir data/raw/nmsqa_squad_test
 ```
 
+Apply the 30-second limit and audit category-A coverage:
+
+```bash
+python data/trim_nmsqa_audio_30s.py
+```
+
 Metadata is cached under `data/raw/nmsqa_overlap/`. Results are written to
 `data/nmsqa_overlap_report.json`; the duration plot is written to
 `data/nmsqa_duration_histogram.png`. Add `--force-download` to the final

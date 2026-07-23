@@ -177,6 +177,12 @@ fuzzy-совпадения, коллизии нормализации и дли�
 python data/explore_nmsqa_overlap.py --ignore-pool --audio-dir data/raw/nmsqa_squad_test
 ```
 
+Применить ограничение 30 секунд и проверить покрытие категории A:
+
+```bash
+python data/trim_nmsqa_audio_30s.py
+```
+
 Метаданные кэшируются в `data/raw/nmsqa_overlap/`. Итог записывается в
 `data/nmsqa_overlap_report.json`, график длительностей — в
 `data/nmsqa_duration_histogram.png`. Для повторного скачивания метаданных
