@@ -81,15 +81,33 @@ def parse_verdict(raw_output: str) -> Verdict:
     incorrect?") before settling on one, so scanning the whole reply made 60/93 real
     thinking-judge replies look ambiguous even though every one of them gave a single clear
     answer after the closing marker.
+
+    Fallback for NO marker at all (2026-07-22, Ministral-3-8B-Reasoning): despite its own chat
+    template instructing "[THINK]...[/THINK]" for this exact model, it routinely skips the tags
+    entirely for a short one-word-verdict task and just reasons in plain prose -- with no
+    marker to split on, the whole reply gets scanned as above, and the same name-checking
+    problem resurfaces (e.g. "...and the correct calculation..." beside a final "...INCORRECT").
+    Verified against 51 real UNPARSEABLE replies (docs/decisions.md): taking the LAST verdict
+    word in the reply as the answer resolved 31 of them, and spot-checking those against the
+    actual prose confirmed the last word really is the model's stated conclusion ("Therefore,
+    the correct classification is ABSTAINED" -> ABSTAINED, not UNPARSEABLE from the earlier
+    "correct"). Only applies when no marker was found at all -- if a marker WAS found and the
+    text after it is still ambiguous, that's a genuine UNPARSEABLE (the model's own "final
+    answer" section itself doesn't commit to one word).
     """
     text = raw_output
+    marker_found = False
     for marker in _THINK_CLOSE_MARKERS:
         if marker in text:
             text = text.rsplit(marker, 1)[-1]
+            marker_found = True
             break
-    matches = {m.group(1) for m in _VERDICT_RE.finditer(text.upper())}
-    if len(matches) == 1:
-        return Verdict(matches.pop())
+    text_matches = list(_VERDICT_RE.finditer(text.upper()))
+    distinct = {m.group(1) for m in text_matches}
+    if len(distinct) == 1:
+        return Verdict(distinct.pop())
+    if not marker_found and text_matches:
+        return Verdict(text_matches[-1].group(1))
     return Verdict.UNPARSEABLE
 
 
