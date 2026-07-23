@@ -59,9 +59,20 @@ class LocalHFJudge(LLMJudge):
         max_new_tokens: int | None = None,
         prompt_name: str = DEFAULT_PROMPT_NAME,
         enable_thinking: bool = True,
+        display_name: str | None = None,
     ) -> None:
         super().__init__(prompt_name=prompt_name)
         from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+        # display_name: only needed when model_id is a local path (e.g. a Kaggle flat-cache dir
+        # standing in for a Hub id, see notebooks/kaggle_run.ipynb's FLAT_CACHE_DIRS) rather than
+        # a real Hub id -- without it, judge.name (below) would derive from the local dir's own
+        # folder name ("qwen3-8b-flat-cache") instead of the actual model identity ("qwen3-8b"),
+        # silently giving the exact same model a different judge_cache.jsonl cache key / output
+        # dir depending on whether it was loaded fresh from the Hub or from a saved flat cache.
+        # 2026-07-23 (docs/decisions.md): caught in practice -- a flat-cache Qwen3-8B run got
+        # filed under judge_name "llm-qwen3-8b-flat-cache-v1", not "llm-qwen3-8b-v1".
+        self._display_name = display_name or model_id
 
         # -v2 (thinking) vs -v1 (no-think): distinct judge_name so judge_cache.jsonl entries
         # never collide across the behavior change (cache key includes judge_name, see
@@ -130,7 +141,7 @@ class LocalHFJudge(LLMJudge):
         weights load -- see docs/decisions.md 2026-07-16 (ad-hoc cell OOM'd loading a second copy).
         """
         self.enable_thinking = enable_thinking
-        self.name = f"llm-{self._model_id.split('/')[-1].lower()}-{'v2' if enable_thinking else 'v1'}"
+        self.name = f"llm-{self._display_name.split('/')[-1].lower()}-{'v2' if enable_thinking else 'v1'}"
         self.max_new_tokens = max_new_tokens if max_new_tokens is not None else (512 if enable_thinking else 64)
 
     def _generate(self, prompt: str) -> str:
