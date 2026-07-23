@@ -20,6 +20,14 @@ PROMPTS_DIR = Path(__file__).resolve().parent.parent / "prompts"
 DEFAULT_PROMPT_NAME = "judge_v1.txt"
 
 _VERDICT_RE = re.compile(r"\b(CORRECT|INCORRECT|ABSTAINED)\b")
+# Models (Ministral-3-8B-Reasoning routinely) end a reply by stating the verdict word twice with
+# no separator, e.g. "...INCORRECTINCORRECT" -- \b can't find a boundary between two immediately
+# adjacent letters, so the SECOND (and often decisive, final) word was invisible to _VERDICT_RE
+# entirely. This inserts a space between two glued verdict words before matching, so both are
+# seen as separate occurrences instead of one undetectable blob. Confirmed 2026-07-22: affected
+# 9 real replies, in at least one case flipping the extracted verdict to the wrong word (an
+# earlier, non-final mention of a different verdict word won by default instead).
+_GLUED_VERDICT_RE = re.compile(r"(CORRECT|INCORRECT|ABSTAINED)(?=CORRECT|INCORRECT|ABSTAINED)")
 
 # Closing marker for a model's reasoning/thinking block, checked in order -- only the text AFTER
 # whichever one actually appears should be scanned for a verdict (see parse_verdict below).
@@ -102,7 +110,8 @@ def parse_verdict(raw_output: str) -> Verdict:
             text = text.rsplit(marker, 1)[-1]
             marker_found = True
             break
-    text_matches = list(_VERDICT_RE.finditer(text.upper()))
+    text_upper = _GLUED_VERDICT_RE.sub(r"\1 ", text.upper())
+    text_matches = list(_VERDICT_RE.finditer(text_upper))
     distinct = {m.group(1) for m in text_matches}
     if len(distinct) == 1:
         return Verdict(distinct.pop())
