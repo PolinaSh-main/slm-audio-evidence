@@ -78,21 +78,6 @@ python data/setup_dataset.py --match-transcripts
 python data/setup_dataset.py --build-passages
 ```
 
-Run the NMSQA natural-audio overlap check for the SQuAD 2.0 scale set:
-
-```bash
-python data/explore_nmsqa_overlap.py
-```
-
-The script downloads and caches NMSQA test metadata plus SQuAD 2.0 dev under
-`data/raw/nmsqa_overlap/`, joins their normalized contexts with
-`data/generation/data.csv`, and writes the short result to
-`data/nmsqa_overlap_report.json`. To refresh the downloaded metadata:
-
-```bash
-python data/explore_nmsqa_overlap.py --force-download
-```
-
 `data.csv` is not the final selection. Manually choose the final 40 passages from this pool and save them as `data/generation/passages.csv` after checking audio quality, transcript quality, duration, diversity, and fact count.
 
 ## Question generation
@@ -159,6 +144,37 @@ python -m src.run_eval --responses results/<run_id>/responses.jsonl
 | Cascade · S1 IDK | **2.5%** | **97.5%** | 87% | 83% | 7% |
 
 One "I-don't-know" instruction cuts hallucination 92.5%→17.5% on the Speech LLM but costs 62% over-refusal; the cascade takes the same instruction almost for free — the bottleneck is epistemic reasoning, not hearing. Details, quotes, and grading provenance: [results/pilot_summary.md](results/pilot_summary.md).
+
+## After pre-defense: NMSQA scale validation
+
+Everything above documents the pilot and pre-defense pipeline. This separate
+phase checks the pilot finding at scale using human-read NMSQA test audio.
+The official release bundles all audio splits in one 27.2 GB archive, so the
+first command downloads and extracts it under `data/raw/nmsqa/` (about
+55–60 GB is needed while the archive is kept):
+
+```bash
+python data/download_nmsqa_audio.py
+```
+
+Select the 51 natural recordings whose passages match SQuAD 2.0 dev, copy them
+to `data/raw/nmsqa_squad_test/`, and verify that every WAV opens:
+
+```bash
+python data/select_nmsqa_squad_audio.py
+```
+
+Run the unfiltered matching, train/fuzzy, normalization-collision, and duration
+audit:
+
+```bash
+python data/explore_nmsqa_overlap.py --ignore-pool --audio-dir data/raw/nmsqa_squad_test
+```
+
+Metadata is cached under `data/raw/nmsqa_overlap/`. Results are written to
+`data/nmsqa_overlap_report.json`; the duration plot is written to
+`data/nmsqa_duration_histogram.png`. Add `--force-download` to the final
+command to refresh the metadata.
 
 ## Working rules
 - Every decision → [docs/decisions.md](docs/decisions.md); data-schema changes announced there the same day. Canonical schemas: [docs/en/PLAN.md §2](docs/en/PLAN.md).
