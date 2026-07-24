@@ -27,10 +27,24 @@ def parse_args() -> argparse.Namespace:
                              "оставляет их 'pending-manual' — старое поведение не меняется. "
                              "'fake' — детерминированная заглушка без GPU/API, для smoke-теста.")
     parser.add_argument("--judge-model", default=None,
-                        help="Переопределить модель судьи по умолчанию для выбранного backend.")
+                        help="Переопределить модель судьи по умолчанию для выбранного backend "
+                             "(например, локальный путь к смонтированным весам вместо Hub id).")
+    parser.add_argument("--judge-display-name", default=None,
+                        help="Имя модели для judge.name/judge_cache.jsonl, если --judge-model — "
+                             "локальный путь (например смонтированный DataSphere-датасет), а не "
+                             "настоящий Hub id — иначе judge_cache.jsonl закешируется под именем "
+                             "последнего сегмента пути вместо реальной модели (см. docs/decisions.md "
+                             "2026-07-23, тот же баг на Kaggle flat-cache).")
     parser.add_argument("--judge-prompt", default=DEFAULT_PROMPT_NAME,
                         help=f"Файл рубрики из src/prompts/ (по умолчанию {DEFAULT_PROMPT_NAME}). "
                              "Смена версии не совместима по кешу со старой — прогонит заново.")
+    parser.add_argument("--judge-thinking", action="store_true",
+                        help="Включить reasoning/thinking-режим судьи. По умолчанию выключен — "
+                             "производственный дефолт judge_v1.txt откалиброван на 94%% (B, n=93) "
+                             "именно в no-think режиме (docs/decisions.md); без этого флага "
+                             "'--judge local' раньше молча уезжал в thinking (LocalHFJudge "
+                             "дефолтит enable_thinking=True), что не совпадает с откалиброванным "
+                             "поведением.")
     return parser.parse_args()
 
 
@@ -65,7 +79,9 @@ def run_evaluation(
     out_dir: str,
     judge_backend: str = "none",
     judge_model: str | None = None,
+    judge_display_name: str | None = None,
     judge_prompt: str = DEFAULT_PROMPT_NAME,
+    judge_thinking: bool = False,
     judge=None,
     subset_ids: set[str] | None = None,
 ) -> None:
@@ -109,6 +125,12 @@ def run_evaluation(
         judge_kwargs: dict = {"prompt_name": judge_prompt}
         if judge_model:
             judge_kwargs["model_id"] = judge_model
+        if judge_backend == "local":
+            # display_name/enable_thinking are LocalHFJudge-only kwargs (see judges/local_hf.py) --
+            # other backends (gemini, fake, tiered) don't accept them.
+            if judge_display_name:
+                judge_kwargs["display_name"] = judge_display_name
+            judge_kwargs["enable_thinking"] = judge_thinking
         llm_judge = build_judge(judge_backend, **judge_kwargs)
 
     os.makedirs(out_dir, exist_ok=True)
@@ -196,5 +218,7 @@ if __name__ == "__main__":
     out = args.out or os.path.dirname(os.path.abspath(args.responses))
     run_evaluation(
         args.manifest, args.responses, out,
-        judge_backend=args.judge, judge_model=args.judge_model, judge_prompt=args.judge_prompt,
+        judge_backend=args.judge, judge_model=args.judge_model,
+        judge_display_name=args.judge_display_name, judge_prompt=args.judge_prompt,
+        judge_thinking=args.judge_thinking,
     )
