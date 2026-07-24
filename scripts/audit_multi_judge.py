@@ -131,6 +131,12 @@ def main() -> None:
             n_traces = extract_thinking_traces(judge_subdir, args.judged, trace_dir)
 
         pct = 100 * result["agree"] / result["scored"] if result["scored"] else 0.0
+        seconds = cand.get("seconds")
+        # Only category-B "answer" items actually trigger an LLM call (src/run_eval.py) --
+        # everything else in the timed loop is resolved by the near-instant rule-based path, so
+        # seconds/scored is a good proxy for per-call judge latency, not just an average over
+        # every item run_evaluation() touched.
+        sec_per_item = seconds / result["scored"] if seconds is not None and result["scored"] else None
         table_rows.append({
             "judge_name": judge_name,
             "model_id": cand.get("model_id", ""),
@@ -141,7 +147,8 @@ def main() -> None:
             "scored": result["scored"],
             "unparseable": result["unparseable"],
             "n_disagreements": len(result["disagreements"]),
-            "seconds": cand.get("seconds"),
+            "seconds": seconds,
+            "sec_per_item": round(sec_per_item, 2) if sec_per_item is not None else None,
             "thinking_traces_written": n_traces,
         })
 
@@ -151,19 +158,21 @@ def main() -> None:
 
     table_rows.sort(key=lambda r: -r["agreement_pct"])
 
-    header = ["Judge", "Model", "Thinking", "Agreement", "Scored", "Unparseable", "Disagreements", "Time (s)"]
+    header = ["Judge", "Model", "Thinking", "Agreement", "Scored", "Unparseable", "Disagreements", "Time (s)", "s/item"]
     md = [
         "# Judge-model comparison vs manual-M1 (93 gold B labels)",
         "",
         "Sorted by agreement, best first. Per-model failures: `<judge_name>/compare_manual_m1.md` "
         "+ `disagreements.jsonl` in this same folder. Full reasoning traces for thinking-enabled "
-        "candidates: `thinking_traces/<judge_name>/`.",
+        "candidates: `thinking_traces/<judge_name>/`. `s/item` = Time (s) / Scored -- only "
+        "category-B \"answer\" items actually call the judge, so this approximates per-call latency.",
         "",
         "| " + " | ".join(header) + " |",
         "|" + "|".join(["---"] * len(header)) + "|",
     ]
     for r in table_rows:
         time_str = f"{r['seconds']:.0f}" if r.get("seconds") is not None else "?"
+        sec_per_item_str = f"{r['sec_per_item']:.2f}" if r.get("sec_per_item") is not None else "?"
         md.append("| " + " | ".join([
             r["judge_name"],
             r["model_id"] or r["backend"],
@@ -173,6 +182,7 @@ def main() -> None:
             str(r["unparseable"]),
             str(r["n_disagreements"]),
             time_str,
+            sec_per_item_str,
         ]) + " |")
     comparison_md = "\n".join(md) + "\n"
     (out_dir / "comparison.md").write_text(comparison_md, encoding="utf-8")
