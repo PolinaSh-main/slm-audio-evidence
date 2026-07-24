@@ -95,7 +95,21 @@ Build `data/manifests/scale_tts_twin.jsonl`: same questions, `id` = `sc-tts-<squ
 
 Both systems (Qwen2-Audio, cascade) × two prompts {plain, S1} on `scale_nmsqa.jsonl` = 4 runs. Twin manifest if time remains. Hand responses to M4 for judging.
 
-*Result of A1 overall:* manifests in `data/manifests/`, 4 runs in `results/`, M4 has the files, the four check numbers are with M1. Wrappers, harness, and judge are unchanged.
+*Result:* 4 runs in `results/`, M4 has the files.
+
+#### Step 8 · Re-verify the A selection against actual timestamps (~40 min, can follow the runs)
+
+*Why:* the transcript boundary is currently computed **proportionally to audio frames** (`transcript_end = len(context) × kept_frames/full_frames`), i.e. assuming an even speaking rate. With a median recording of 66.5 s and a maximum of 156 s we keep between 45% and 19% of the text, and the error of such an estimate can exceed several percent. A safety-margin check showed that for most questions the answer ends far from the boundary, **but 4 have a margin below 5% and one has exactly 0 characters**. For those the proportion may err either way, letting an A question into the set whose answer was never actually spoken.
+
+The approximation can be replaced with a direct measurement: NMSQA itself (the same `nmsqa_test.parquet`) carries `answers.audio_full_answer_start` and `answers.audio_full_answer_end` — **the time in seconds when the answer is spoken in the full recording**. Its `id` field equals the SQuAD `qid`, so the join is direct.
+
+1. **Re-check the 145 A items.** For each A question in the manifest take `audio_full_answer_end` and keep only those whose answer fits entirely within 30 s. Careful: the field is a list (several annotations of one answer); take the maximum for the variant matching our `gold_answer`, or the maximum over all when in doubt. Start with the four borderline ones: `5726a46cdd62a815002e8bd2` (0-character margin), `5729da0faf94a219006aa677`, `57060f3e75f01819005e7924`, `572a0b101d046914007796eb`.
+2. **Check merge integrity.** The maximum `audio_full_answer_end` per paragraph must not exceed the duration of the merged recording; if it does, a segment was lost during merging.
+3. **Report the numbers to M1:** how many A items dropped out under actual timestamps, and whether the conclusions match the proportional method. Dropped items **do not require re-running** — it is enough to exclude them when computing metrics.
+
+*Result:* the refined A list (or confirmation that all 145 are valid) plus the merge-integrity result with M1; any discrepancy logged in `decisions.md`.
+
+*Result of A1 overall:* manifests in `data/manifests/`, 4 runs in `results/`, M4 has the files, the four check numbers and the timestamp re-verification are with M1. Wrappers, harness, and judge are unchanged.
 
 **Fallback if too few items survive the filters.** `data.csv` has 1033 paragraphs, 608 of them present in SQuAD 2.0 dev → **2984 A + 2967 C** native questions available on TTS audio. If natural C runs short, top up with a TTS part using the same script (`source: "spoken-squad"`, at most 1–2 questions per paragraph for paragraph diversity). M1 decides based on your numbers.
 
