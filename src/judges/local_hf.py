@@ -56,6 +56,7 @@ class LocalHFJudge(LLMJudge):
         self,
         model_id: str = MODEL_ID,
         load_in_8bit: bool = True,
+        load_in_4bit: bool = False,
         max_new_tokens: int | None = None,
         prompt_name: str = DEFAULT_PROMPT_NAME,
         enable_thinking: bool = True,
@@ -88,7 +89,18 @@ class LocalHFJudge(LLMJudge):
         self.set_thinking(enable_thinking, max_new_tokens=max_new_tokens)
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         kwargs: dict[str, Any] = {"device_map": "auto"}
-        if load_in_8bit:
+        # 2026-07-23 (docs/decisions.md): Qwen3.6-27B (~54 GB bf16, ~27 GB at 8-bit) failed with
+        # "Some modules are dispatched on the CPU or the disk" on 2xT4 (32 GB combined) -- 8-bit
+        # weights alone leave almost no headroom for KV-cache/activations, so accelerate's
+        # device_map="auto" tries to offload the overflow to CPU/disk, which bitsandbytes'
+        # 8-bit path refuses without an explicit fp32 CPU-offload opt-in. 4-bit halves the
+        # quantized footprint (~13-14 GB for this model) instead of fighting the offload path --
+        # takes precedence over load_in_8bit if both are somehow passed.
+        if load_in_4bit:
+            kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16, bnb_4bit_quant_type="nf4",
+            )
+        elif load_in_8bit:
             kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
         else:
             kwargs["torch_dtype"] = torch.float16
