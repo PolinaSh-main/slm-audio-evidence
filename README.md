@@ -149,8 +149,15 @@ One "I-don't-know" instruction cuts hallucination 92.5%→17.5% on the Speech LL
 
 Everything above documents the pilot and pre-defense pipeline. This separate
 phase checks the pilot finding at scale using human-read NMSQA test audio.
-The official release bundles all audio splits in one 27.2 GB archive, so the
-first command downloads and extracts it under `data/raw/nmsqa/` (about
+Download the NMSQA test and SQuAD 2.0 metadata and run the initial matching
+audit:
+
+```bash
+python data/explore_nmsqa_overlap.py --ignore-pool
+```
+
+The official release bundles all audio splits in one 27.2 GB archive. The
+following command downloads and extracts it under `data/raw/nmsqa/` (about
 55–60 GB is needed while the archive is kept):
 
 ```bash
@@ -181,6 +188,18 @@ Apply the 30-second limit and audit category-A coverage:
 
 ```bash
 python data/trim_nmsqa_audio_30s.py
+```
+
+Build the natural scale manifest:
+
+```bash
+python data/make_scale_manifest.py
+```
+
+Optionally build the paired Spoken-SQuAD TTS manifest:
+
+```bash
+python data/make_tts_twin_manifest.py
 ```
 
 Metadata is cached under `data/raw/nmsqa_overlap/`. Results are written to

@@ -149,6 +149,13 @@ python -m src.run_eval --responses results/<run_id>/responses.jsonl
 
 Всё выше относится к пилоту и пайплайну предзащиты. Этот отдельный этап
 проверяет вывод пилота на масштабе и на натуральной речи из NMSQA test.
+Скачать метаданные NMSQA test и SQuAD 2.0 и запустить первичный аудит
+матчинга:
+
+```bash
+python data/explore_nmsqa_overlap.py --ignore-pool
+```
+
 Официальный источник хранит все аудиосплиты в одном архиве размером 27,2 ГБ.
 Команда скачивает и распаковывает его в `data/raw/nmsqa/` (пока архив не
 удалён, нужно около 55–60 ГБ):
@@ -181,6 +188,18 @@ python data/explore_nmsqa_overlap.py --ignore-pool --audio-dir data/raw/nmsqa_sq
 
 ```bash
 python data/trim_nmsqa_audio_30s.py
+```
+
+Собрать натуральный скейл-манифест:
+
+```bash
+python data/make_scale_manifest.py
+```
+
+Опционально собрать парный Spoken-SQuAD TTS-манифест:
+
+```bash
+python data/make_tts_twin_manifest.py
 ```
 
 Метаданные кэшируются в `data/raw/nmsqa_overlap/`. Итог записывается в
