@@ -202,6 +202,22 @@ python data/make_scale_manifest.py
 python data/make_tts_twin_manifest.py
 ```
 
+После четырёх scale-прогонов и появления `scale_nmsqa_responses_20260725.zip`
+проверить, что A-ответы слышны в 30-секундном аудио, через ASR-транскрипты
+cascade:
+
+```bash
+python data/check_scale_asr_answers.py
+python data/package_asr_suspects.py
+```
+
+Применить ручные решения по прослушке и заморозить финальный scale-датасет:
+
+```bash
+python data/apply_scale_a_review.py --drop-social-chapter --output data/manifests/scale_nmsqa_final.jsonl
+python data/freeze_scale_dataset.py
+```
+
 Метаданные кэшируются в `data/raw/nmsqa_overlap/`. Итог записывается в
 `data/nmsqa_overlap_report.json`, график длительностей — в
 `data/nmsqa_duration_histogram.png`. Для повторного скачивания метаданных

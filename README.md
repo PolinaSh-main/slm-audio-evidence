@@ -202,6 +202,22 @@ Optionally build the paired Spoken-SQuAD TTS manifest:
 python data/make_tts_twin_manifest.py
 ```
 
+After the four scale runs are complete and
+`scale_nmsqa_responses_20260725.zip` is available, audit A-answer audibility in
+the 30-second audio using the cascade ASR transcripts:
+
+```bash
+python data/check_scale_asr_answers.py
+python data/package_asr_suspects.py
+```
+
+Apply the manual review decisions and freeze the final scale dataset:
+
+```bash
+python data/apply_scale_a_review.py --drop-social-chapter --output data/manifests/scale_nmsqa_final.jsonl
+python data/freeze_scale_dataset.py
+```
+
 Metadata is cached under `data/raw/nmsqa_overlap/`. Results are written to
 `data/nmsqa_overlap_report.json`; the duration plot is written to
 `data/nmsqa_duration_histogram.png`. Add `--force-download` to the final
